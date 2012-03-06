@@ -2,14 +2,15 @@
 ###################
 *.rpt
 *.summary
-*.dll
-*.exe
-*.o
-*.so
+*.done
+*.smsg
+*.jdi
+*.pin
+*.pof
+*.sof
 
 db/
-Debug/
-Release/
+incremental_db/
 
 *.avrsuo
 
