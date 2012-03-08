@@ -9,6 +9,7 @@
 *.pof
 *.sof
 *.bak
+*.mti
 
 db/
 incremental_db/
