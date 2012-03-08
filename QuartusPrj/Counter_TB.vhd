@@ -25,7 +25,8 @@ architecture bench of Counter_tb is
   signal data: std_logic := '0';
   signal valid: std_logic := '0' ;
 
-  constant clock_period: time := 10 ns;
+  constant clock_period: time := 500 ps;
+  constant IrClock_period: time := 27 us;
   signal stop_the_clock: boolean;
 
 begin
@@ -45,9 +46,19 @@ begin
 
     -- Put test bench stimulus code here
 
-    stop_the_clock <= true;
+    stop_the_clock <= false;
     wait;
   end process;
+
+  IRclocking: process
+  begin
+    while not stop_the_clock loop
+      IR_RX <= '0', '1' after IrClock_period / 2;
+      wait for IrClock_period;
+    end loop;
+    wait;
+  end process;
+
 
   clocking: process
   begin
@@ -60,6 +71,7 @@ begin
 
 end;
   
+
 --Configuration Declaration
 
 -- Test bench configuration created online at:

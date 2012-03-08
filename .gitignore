@@ -12,6 +12,9 @@
 *.mti
 *.mpf
 *.qdf
+*.wlf
+*.vstf
+
 transcript
 
 db/
