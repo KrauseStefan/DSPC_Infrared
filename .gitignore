@@ -10,11 +10,13 @@
 *.sof
 *.bak
 *.mti
-*.,pf
+*.mpf
+*.qdf
 transcript
 
 db/
 incremental_db/
+work/
 
 *.avrsuo
 
