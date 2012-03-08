@@ -17,7 +17,7 @@ end entity InfraredReciver;
 
 architecture InfraredReciver_Arc of InfraredReciver is
 
-type state_type is (idle, get_data, last_data, data_ready);
+type state_type is (idle, get_data, last_data, wait_for_low_enable, data_ready);
 signal state : state_type := idle;
 
 signal sampling_error : std_logic;
@@ -44,21 +44,34 @@ begin
 						if 12 > bit_count then
 							sampling_cmd(bit_count) <= data;
 							bit_count := bit_count - 1;
+							
 							if error = '1' then 			-- if error has occur
 								sampling_error <= '1';
 							end if;
-							if bit_count = -1 then
+							
+							if bit_count > -1 then
+								state <= wait_for_low_enable;
+							else
 								state <= last_data;
 							end if;
 						end if;
 					end if;
 				when last_data =>
+					bit_count := bit_count - 1;
 					cmd <= sampling_cmd;
 					errorBit <= sampling_error;
 					state <= data_ready;
+				when wait_for_low_enable =>
+					if enable = '0' then
+						if bit_count > -1 then
+							state <= get_data;
+						else
+							state <= idle;
+						end if;						
+					end if;
 				when data_ready =>
 					--signal bus
-					state <= idle;
+					state <= wait_for_low_enable;
 			end case;
 		end if;
 	end if;

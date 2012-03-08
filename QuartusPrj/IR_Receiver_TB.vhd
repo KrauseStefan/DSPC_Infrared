@@ -4,15 +4,15 @@ use IEEE.Numeric_Std.all;
 
 -------------------------------------------------------------------------------
 
-entity IF_Receiver_TB is
+entity IR_Receiver_TB is
   
-end IF_Receiver_TB;
+end IR_Receiver_TB;
 
 -------------------------------------------------------------------------------
 
-architecture test of IF_Receiver_TB is
+architecture test of IR_Receiver_TB is
 
-  component IF_Receiver
+  component InfraredReciver
     port(
       data      : in std_logic;
 		  enable    :	in std_logic;
@@ -36,6 +36,58 @@ architecture test of IF_Receiver_TB is
   signal stop_the_clock: boolean;
 
 begin
+  
+-- Component instantiation
+UUT : InfraredReciver port map( clk      => clk,
+                                reset    => reset,
+                                data     => data,
+                                enable   => enable,
+                                error    => error,
+                                cmd      => cmd,
+                                errorBit => errorBit);
 
+stimulus: process
+begin
+
+  data <= '1';
+  enable <= '1';
+  wait for clock_period;
+  
+  data <= '0';
+  wait for clock_period;
+  
+  data <= '1';
+  wait for clock_period;
+  
+  data <= '0';
+  wait for clock_period;
+  
+  data <= '1';
+  wait for clock_period;
+  
+  data <= '0';
+  wait for clock_period;
+  
+  data <= '1';
+  wait for clock_period;
+  
+  data <= '0';
+  wait for clock_period;
+  
+  data <= '1';
+  wait for clock_period * 4;
+
+  stop_the_clock <= true;
+  wait;
+end process;
+
+clocking: process
+begin
+  while not stop_the_clock loop
+    clk <= '0', '1' after clock_period / 2;
+    wait for clock_period;
+  end loop;
+  wait;
+end process;
   
 end test;
