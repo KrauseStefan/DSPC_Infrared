@@ -15,7 +15,7 @@ end entity Counter;
 architecture Counter_Arc of Counter is
 	variable rcvCount : integer := 0;
 	signal bitShiftReg : std_logic_vector(7 downto 0) := x"00";
-	signal intValid : std_logic := 0;
+	signal intValid : std_logic := '0';
 begin
 	receive : process(clk) is
 	begin

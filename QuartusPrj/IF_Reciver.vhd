@@ -36,7 +36,7 @@ begin
 				when idle =>		-- waiting for first bit
 					if enable = '1' then
 						bit_count := 11;	-- set counter 
-						error = '0';
+						sampling_error <= '0';
 						state <= get_data;
 					end if;
 				when get_data =>
