@@ -23,9 +23,9 @@ architecture bench of Counter_tb is
   signal sr_in: std_logic;
   signal shift: std_logic;
   signal data: std_logic := '0';
-  signal valid: std_logic := '0' ;
+  signal valid: std_logic := '0';
 
-  constant clock_period: time := 500 ps;
+  constant clock_period: time := 500 ns;
   constant IrClock_period: time := 27 us;
   signal stop_the_clock: boolean;
 
@@ -53,7 +53,7 @@ begin
   IRclocking: process
   begin
     while not stop_the_clock loop
-      IR_RX <= '0', '1' after IrClock_period / 2;
+      IR_RX <= '0', '1' after IrClock_period / 3;
       wait for IrClock_period;
     end loop;
     wait;
