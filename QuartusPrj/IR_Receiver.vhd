@@ -89,8 +89,8 @@ end process;
 
 -- HUSK POT MAPPING TIL KASPER OG KRAUSE
 
-sampler : entity work.BitSampler(TestBitSampler) port map ( dataOut => data,
---sampler : entity work.BitSampler(BitSamplerArc) port map ( dataOut => data,
+--sampler : entity work.BitSampler(TestBitSampler) port map ( dataOut => data,
+sampler : entity work.BitSampler(BitSamplerArc) port map ( dataOut => data,
                                         clk => clk,
                                         reset => reset, 
                                         readbit => enable,

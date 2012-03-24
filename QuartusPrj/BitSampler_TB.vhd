@@ -13,7 +13,8 @@ architecture bench of BitSampler_TB is
   		  reset   : in std_logic;
     		dataOut	: out std_logic;
     		readbit	: out std_logic;
-    		error		 : out std_logic 
+    		error		 : out std_logic;
+    		IR_RX   : in std_logic 
 		);
 end component;
   
@@ -24,6 +25,7 @@ end component;
   signal readbit: std_logic;
   signal error  : std_logic;
   signal reset  : std_logic;
+  signal IR_RX  : std_logic;
   
   
   -- signal med data - skal muligvis ændres til en anden type data
@@ -42,7 +44,9 @@ end component;
             reset   =>  reset,
             dataOut =>  dataOut,
             readbit =>  readbit,
-            error   =>  error);
+            error   =>  error,
+            IR_RX   =>  IR_TX
+            );
             
   stimulus: process 
   begin
