@@ -10,7 +10,6 @@ entity FilterControl is
 		IR_RX   : in  std_logic;
 
 		data    : out std_logic_vector(7 downto 0)
-
 	);
 end entity FilterControl;
 
@@ -20,14 +19,14 @@ architecture rtl of FilterControl is
 	signal ast_sink_valid : std_logic;
 	signal ast_sink_error : std_logic_vector(1 downto 0);
 
-	signal ast_source_data  : std_logic_vector(1 downto 0);
+	signal ast_source_data  : std_logic_vector(7 downto 0);
 	signal ast_source_ready : std_logic;
 	signal ast_source_valid : std_logic;
 	signal ast_source_error : std_logic_vector(1 downto 0);
 
-	type stBusStates is (idle, transfer, holdOne);
-	signal sinkState : stBusStates := idle;
-	signal sourceState : stBusStates := idle;
+	type stBusStates is (transfer, holdOne);
+	signal sinkState   : stBusStates := transfer;
+	signal sourceState : stBusStates := transfer;
 begin
 	fir_Filter : entity work.filter port map(
 			clk              => clk,
@@ -41,7 +40,7 @@ begin
 			ast_sink_error   => ast_sink_error,
 			--- source = output
 			ast_source_data  => ast_source_data,
-			ast_source_ready => '1', -- Always ready
+			ast_source_ready => '1',    -- Always ready
 			ast_source_valid => ast_source_valid,
 			ast_source_error => ast_source_error);
 
@@ -50,25 +49,20 @@ begin
 		if reset_n = '0' then
 		elsif rising_edge(clk) then
 			case sinkState is
-				when idle =>
-					if (ast_source_valid = '1') then
-						sinkState <= transfer;
-					end if;
-					ast_sink_valid <= '0';
 				when transfer =>
-					if IR_RX = '0' then
-						ast_sink_data <= x"00";
+					if (ast_sink_ready = '1') then
+						if IR_RX = '0' then
+							ast_sink_data <= x"00";
+						else
+							ast_sink_data <= x"ff";
+						end if;
+						ast_sink_valid <= '1';
+						sinkState      <= holdOne;
 					else
-						ast_sink_data <= x"ff";
+						ast_sink_valid <= '0';
 					end if;
-					ast_sink_valid <= '1';
-					sinkState <= holdOne;
 				when holdOne =>
-					if(ast_sink_ready = '1') then
-						sinkState <= transfer;
-					else
-						sinkState <= idle;
-					end if;					
+					sinkState <= transfer;
 				when others => null;
 			end case;
 		end if;
@@ -78,28 +72,18 @@ begin
 	begin
 		if reset_n = '0' then
 		elsif rising_edge(clk) then
-			case sourceState is
-				when idle =>
-					if (ast_sink_ready = '1') then
-						sourceState <= transfer;
-					end if;
-					ast_sink_valid <= '0';
+			case sourceState is         -- always ready
 				when transfer =>
-				
-					
-					sourceState <= holdOne;
+					if (ast_source_valid = '1') then
+						data        <= ast_source_data;
+						sourceState <= holdOne;
+					end if;
 				when holdOne =>
-					if(ast_sink_ready = '1') then
-						sourceState <= transfer;
-					else
-						sourceState <= idle;
-					end if;					
+					sourceState <= transfer;
 				when others => null;
 			end case;
 		end if;
 	end process sourceProc;
-
-
 
 end architecture rtl;
 

@@ -24,7 +24,7 @@ entity filter_0002_ast is
   INWIDTH             : integer := 8;
   FULL_WIDTH          : integer := 22;
   BANKINWIDTH         : integer := 0;
-  REM_LSB_BIT_g       : integer := 20;
+  REM_LSB_BIT_g       : integer := 14;
   REM_LSB_TYPE_g      : string := "Truncation";
   REM_MSB_BIT_g       : integer := 0;
   REM_MSB_TYPE_g      : string := "Truncation";

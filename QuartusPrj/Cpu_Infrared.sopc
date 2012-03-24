@@ -2,6 +2,9 @@
 <system name="Cpu_Infrared">
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element Cpu_Infrared
+   {
+   }
    element clocks_0.avalon_clocks_slave
    {
       datum baseAddress
@@ -50,19 +53,19 @@
          type = "long";
       }
    }
-   element lcd_1.control_slave
-   {
-      datum baseAddress
-      {
-         value = "1052752";
-         type = "long";
-      }
-   }
    element lcd_0.control_slave
    {
       datum baseAddress
       {
          value = "1052736";
+         type = "long";
+      }
+   }
+   element lcd_1.control_slave
+   {
+      datum baseAddress
+      {
+         value = "1052752";
          type = "long";
       }
    }
@@ -137,19 +140,19 @@
          type = "int";
       }
    }
-   element pio_0.s1
-   {
-      datum baseAddress
-      {
-         value = "1052704";
-         type = "long";
-      }
-   }
    element pio_1.s1
    {
       datum baseAddress
       {
          value = "1052720";
+         type = "long";
+      }
+   }
+   element pio_0.s1
+   {
+      datum baseAddress
+      {
+         value = "1052704";
          type = "long";
       }
    }
@@ -197,10 +200,10 @@
  <parameter name="globalResetBus" value="true" />
  <parameter name="hdlLanguage" value="VHDL" />
  <parameter name="maxAdditionalLatency" value="0" />
- <parameter name="projectName" value="DSPC_InfraRead" />
+ <parameter name="projectName" value="DSPC_InfraRead.qpf" />
  <parameter name="sopcBorderPoints" value="true" />
  <parameter name="systemHash" value="-16389359654" />
- <parameter name="timeStamp" value="1332582272717" />
+ <parameter name="timeStamp" value="1332586261407" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />

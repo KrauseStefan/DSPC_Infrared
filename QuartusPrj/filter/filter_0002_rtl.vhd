@@ -16,7 +16,7 @@
 ----------------------------------------------------------------------------- 
 
 -- VHDL created from filter_0002_rtl
--- VHDL created on Sat Mar 24 10:32:44 2012
+-- VHDL created on Sat Mar 24 12:16:37 2012
 
 
 library IEEE;
