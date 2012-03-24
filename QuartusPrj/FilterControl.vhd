@@ -7,7 +7,7 @@ entity FilterControl is
 		clk     : in  std_logic;
 		reset_n : in  std_logic;
 
-		IR_TX   : in  std_logic;
+		IR_RX   : in  std_logic;
 
 		data    : out std_logic_vector(7 downto 0)
 	);
@@ -51,7 +51,7 @@ begin
 			case sinkState is
 				when transfer =>
 					if (ast_sink_ready = '1') then
-						if IR_TX = '0' then
+						if IR_RX = '0' then
 							ast_sink_data <= x"00";
 						else
 							ast_sink_data <= x"ff";

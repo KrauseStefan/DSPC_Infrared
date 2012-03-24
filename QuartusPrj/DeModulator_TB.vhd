@@ -8,23 +8,20 @@ end;
 architecture bench of DeModulator_tb is
 	component DeModulator
 		port(
-			clk      : in  std_logic;
-			IR_RX    : in  std_logic;
-			sr_in    : in  std_logic;
-			shift    : in  std_logic;
-			data     : out std_logic := '0';
-			valid    : out std_logic := '0';
-			intValid : out std_logic := '0'
+			clk     : in  std_logic;
+			IR_RX   : in  std_logic;
+			reset_n : in  std_logic;
+			data    : out std_logic := '0';
+			valid   : out std_logic := '0';
+			intData : out std_logic := '0'
 		);
 	end component;
 
-	signal clk      : std_logic;
-	signal IR_RX    : std_logic;
-	signal sr_in    : std_logic;
-	signal shift    : std_logic;
-	signal data     : std_logic := '0';
-	signal valid    : std_logic := '0';
-	signal intValid : std_logic := '0';
+	signal clk     : std_logic;
+	signal IR_RX   : std_logic;
+	signal data    : std_logic := '0';
+	signal valid   : std_logic := '0';
+	signal intData : std_logic := '0';
 
 	constant clock_period   : time    := 500 ns; -- 2 MHz;
 	constant IrClock_period : time    := 27 us;
@@ -34,13 +31,15 @@ architecture bench of DeModulator_tb is
 	signal stop_the_Irclock : boolean := false;
 
 begin
-	uut : DeModulator port map(clk      => clk,
-			               IR_RX    => IR_RX,
-			               sr_in    => sr_in,
-			               shift    => shift,
-			               data     => data,
-			               valid    => valid,
-			               intValid => intValid);
+	uut : DeModulator
+		port map(
+			clk     => clk,
+			IR_RX   => IR_RX,
+			data    => data,
+			valid   => valid,
+			intData => intData,
+			reset_n => '0'
+		);
 
 	stimulus : process
 	begin

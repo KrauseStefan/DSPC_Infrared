@@ -5,7 +5,7 @@ entity DeModulator is
 	port(
 		clk     : in  std_logic;        -- 1,512 MHz not during test
 		reset_n : in  std_logic;
-		IR_TX   : in  std_logic;
+		IR_RX   : in  std_logic;
 		data    : out std_logic := '0';
 		valid   : out std_logic := '0';
 		
@@ -27,7 +27,7 @@ begin
 	FilterControl1 : entity work.FilterControl
 		port map(clk     => clk,
 			     reset_n => reset_n,
-			     IR_TX   => IR_TX
+			     IR_RX   => IR_RX
 			     );
 
 	receive : process(clk) is
@@ -39,7 +39,7 @@ begin
 	begin
 		if rising_edge(clk) then
 			bitShiftReg(11 downto 1) := bitShiftReg(10 downto 0);
-			bitShiftReg(0) := IR_TX;
+			bitShiftReg(0) := IR_RX;
 
 			if (bitShiftReg = x"FFF" and isHigh = false) then
 				rcvCount  := 1 + rcvCount;

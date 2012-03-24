@@ -15,7 +15,7 @@ entity InfraredReciver is
 		testBit: out integer;
 		
 		--Forwared signals
-		IR_TX : in std_logic
+		IR_RX : in std_logic
 		
 	);
 end entity InfraredReciver;
@@ -95,7 +95,7 @@ sampler : entity work.BitSampler(BitSamplerArc) port map ( dataOut => data,
                                         reset => reset, 
                                         readbit => enable,
                                         error => error,
-                                        IR_TX => IR_TX
+                                        IR_RX => IR_RX
                                         );
 
 end architecture InfraredReciver_Arc;

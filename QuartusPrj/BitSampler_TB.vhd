@@ -45,7 +45,7 @@ end component;
             dataOut =>  dataOut,
             readbit =>  readbit,
             error   =>  error,
-            IR_RX   =>  IR_TX
+            IR_RX   =>  IR_RX
             );
             
   stimulus: process 

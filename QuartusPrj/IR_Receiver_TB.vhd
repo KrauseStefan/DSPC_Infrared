@@ -39,7 +39,7 @@ UUT : entity work.InfraredReciver port map( clk => clk,
                                 cmd      => cmd,
                                 errorBit => errorBit,
                                 testBit => testBit,
-                                IR_TX => '0'
+                                IR_RX => '0'
                                 );
 
 stimulus: process

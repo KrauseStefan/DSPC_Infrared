@@ -11,7 +11,7 @@ entity BitSampler is
 		error   : out std_logic := '0';
 
 		-- Forwared signals
-		IR_TX   : in  std_logic
+		IR_RX   : in  std_logic
 	);
 end entity BitSampler;
 
@@ -35,7 +35,6 @@ begin
 		if rising_edge(clk) then
 			case state is
 				when idle =>            -- W8 for the enable bit, which signals bitsample will get first data
-
 					if enable = '1' then
 						state <= firstBitRecived;
 					end if;
@@ -105,7 +104,7 @@ begin
 			reset_n => reset,
 			data    => dataIn,
 			valid   => enable,
-			IR_TX   => IR_TX);
+			IR_RX   => IR_RX);
 end architecture BitSamplerArc;
 
 -------------------------------------------------------------------------------
