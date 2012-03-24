@@ -19,7 +19,7 @@ end entity BitSampler;
 
 architecture BitSamplerArc of BitSampler is
 	-- States able for Bitsampler COM.
-	type state_type is (idle, firstBitRecived, secondBitRecived, validateData, sendValidData, sendErrorData, waitForEnable);
+	type state_type is (idle, firstBitRecived, secondBitRecived, validateData, sendValidData, sendErrorData, waitForEnable, waitForEnableAfterSendData);
 	type state_type_send is (idle, sendData);
 	signal state             : state_type;
 	signal state_sendReadbit : state_type_send;
@@ -69,23 +69,28 @@ begin
 					if (samplebit = "01") then
 						dataOut     <= '1';
 						sendReadbit <= 1;
-						state       <= idle;
+						state       <= waitForEnableAfterSendData;
 					else
 						dataOut     <= '0';
 						sendReadbit <= 1;
-						state       <= idle;
+						state       <= waitForEnableAfterSendData;
 					end if;
 				when sendErrorData =>
 					readbit     <= '1';
 					error       <= '1';
 					dataOut     <= '1';
 					sendReadbit <= 1;
-					state       <= idle;
+					state       <= waitForEnableAfterSendData;
+				when waitForEnableAfterSendData =>
+					  if enable = '0' then
+					  state <= idle;
+					  end if;
 			end case;
 
 			case state_sendReadbit is
 				when idle =>
 					if sendReadbit = 1 then
+					  sendReadbit <= 0;
 						state_sendReadbit <= sendData;
 					end if;
 				-- Shouldnt do anything here beside waiting.
