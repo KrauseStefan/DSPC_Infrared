@@ -1,0 +1,10 @@
+24-03-2012 10:50:17 com.altera.utilities.Launcher launch
+INFO: Launching:c:/altera/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/sram_0.v --source=C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/sram_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/KASPER~1/AppData/Local/Temp/alt5423_5788258104400961816.dir/0001_sopcqmap/
+24-03-2012 10:50:26 com.altera.utilities.Launcher launch
+INFO: Launching:c:/altera/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/clocks_0.v --source=C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/clocks_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/KASPER~1/AppData/Local/Temp/alt5423_5788258104400961816.dir/0002_sopcqmap/
+24-03-2012 10:50:28 com.altera.utilities.Launcher launch
+INFO: Launching:c:\altera\11.1\quartus//bin/quartus_sh.exe -t sopc_add_qip_file.tcl
+24-03-2012 10:50:30 com.altera.utilities.Launcher launch
+INFO: Launching:C:/altera/11.1/quartus/bin/cygwin/bin/sh.exe -c . C:/altera/11.1/quartus/sopc_builder/bin/nios_sh ; C:/altera/11.1/quartus/sopc_builder/bin/sopc_builder --classic --no_splash --refresh C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf
+24-03-2012 10:50:49 com.altera.utilities.Launcher launch
+INFO: Launching:C:/altera/11.1/quartus/bin/cygwin/bin/sh.exe -c . C:/altera/11.1/quartus/sopc_builder/bin/nios_sh ; C:/altera/11.1/quartus/sopc_builder/bin/sopc_builder --classic --generate C:/Users/Kasper-Work/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf

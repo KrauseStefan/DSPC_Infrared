@@ -1,0 +1,22 @@
+# clk_0
+# sram_0
+set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) University_Program/Memory/altera_up_avalon_sram/altera_up_avalon_sram_hw.tcl]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) sram_0.v]
+# null
+# jtag_uart_0
+# pio_0
+# pio_1
+# lcd_0
+# lcd_1
+# timer_0
+# cpu_0
+set_global_assignment -name SDC_FILE [file join $::quartus(qip_path) cpu_0.sdc]
+set_global_assignment -name SOURCE_FILE [file join $::quartus(qip_path) cpu_0.ocp]
+# clocks_0
+set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) University_Program/altera_up_avalon_clocks/altera_up_avalon_clocks_hw.tcl]
+set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) clocks_0.v]
+# sysid_0
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "002219FD4CBC00000136441D0A99"
+set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_NAME "sopc"
+set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_VERSION "11.1"
+set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_ENV "sopc"
