@@ -76,7 +76,7 @@ constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001";
 variable bitCount : integer;
 begin
   bitCount := 22;
-  valid <= 0;
+  valid <= '0';
   wait until reset_n = '0';
   wait until clk = '1';
   
