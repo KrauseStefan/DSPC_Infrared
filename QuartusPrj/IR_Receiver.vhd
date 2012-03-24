@@ -5,9 +5,9 @@ use IEEE.Numeric_Std.all;
 
 entity InfraredReciver is
 	port (
-		data : 	in std_logic;
-		enable :	in std_logic;
-		error : 	in std_logic;
+--		data : 	in std_logic;
+--    enable :	in std_logic;
+--    error : 	in std_logic;
 		clk : 	in std_logic;
 		reset : 	in std_logic;
 		cmd : 	out std_logic_vector(11 downto 0) := "000000000000";
@@ -23,6 +23,8 @@ signal state : state_type := idle;
 
 signal sampling_error : std_logic;
 signal sampling_cmd : std_logic_vector(11 downto 0);
+
+signal data, enable, error : std_logic;
 
 begin
 
@@ -46,8 +48,6 @@ begin
 							sampling_cmd(bit_count) <= data;
 							bit_count := bit_count - 1;
 							
-							--testBit <= bit_count; -- TEST
-							
 							if error = '1' then 			-- if error has occur
 								  sampling_error <= '1';
 							end if;
@@ -59,7 +59,6 @@ begin
 							  errorBit <= '1'; -- TEST
                 state <= data_received;
 							end if;
-							
 						end if;
 					end if;
 				when data_received =>
@@ -86,5 +85,11 @@ end process;
 
 -- HUSK POT MAPPING TIL KASPER OG KRAUSE
 
-	
+sampler : entity work.BitSampler(TestBitSampler) port map ( dataOut => data,
+--sampler : entity work.BitSampler(BitSamplerArc) port map ( dataOut => data,
+                                        clk => clk,
+                                        reset => reset, 
+                                        readbit => enable,
+                                        error => error);
+
 end architecture InfraredReciver_Arc;

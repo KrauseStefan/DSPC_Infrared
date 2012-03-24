@@ -14,9 +14,6 @@ architecture test of IR_Receiver_TB is
 
   component InfraredReciver
     port(
-      data      : in std_logic;
-		  enable    :	in std_logic;
-		  error     : in std_logic;
 		  clk       : in std_logic;
 		  reset     : in std_logic;
 		  cmd       : out std_logic_vector(11 downto 0);
@@ -24,12 +21,9 @@ architecture test of IR_Receiver_TB is
 		  testBit   : out integer
 	 );
 	end component;
-  
-  signal data: std_logic;
-  signal enable: std_logic;
-  signal error: std_logic;
+
   signal clk: std_logic;
-  signal reset: std_logic;
+  signal reset: std_logic := '1';
   signal cmd: std_logic_vector(11 downto 0);
   signal errorBit: std_logic;
   signal testBit : integer;
@@ -40,129 +34,20 @@ architecture test of IR_Receiver_TB is
 begin
   
 -- Component instantiation
-UUT : InfraredReciver port map( clk      => clk,
+UUT : entity work.InfraredReciver port map( clk => clk,
                                 reset    => reset,
-                                data     => data,
-                                enable   => enable,
-                                error    => error,
                                 cmd      => cmd,
                                 errorBit => errorBit,
                                 testBit => testBit);
 
 stimulus: process
 begin
-  reset <= '1';
-  wait for clock_period;
-  
-  reset <= '0';
-  wait for clock_period;
-  
-  -- data 1
-  error <= '0';
-  data <= '1';
-  enable <= '1';
   wait for clock_period*2;
   
-  enable <= '0';
-  wait for clock_period;
-
-  -- data 2  
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
+  reset <= '0';
   
-  enable <= '0';
-  wait for clock_period;
-
-  -- data 3  
-  enable <= '1';
-  data <= '1';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 4
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 5
-  enable <= '1';
-  data <= '1';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 6
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 7
-  enable <= '1';
-  data <= '1';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 8
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 9
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 10
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 11
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  wait for clock_period;
-  
-  -- data 12
-  enable <= '1';
-  data <= '1';
-  wait for clock_period;
-  
-  enable <= '0';
+  wait until cmd(0) = '1';
   wait for clock_period*3;
-  
-  -- data 13
-  enable <= '1';
-  data <= '0';
-  wait for clock_period;
-  
-  enable <= '0';
-  
-  wait for clock_period * 4;
-
   stop_the_clock <= true;
   wait;
 end process;

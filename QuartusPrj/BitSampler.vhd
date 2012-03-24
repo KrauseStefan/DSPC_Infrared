@@ -4,9 +4,10 @@ use ieee.numeric_std.all;
 
 entity BitSampler is
 	port (
-		dataIn 	: in std_logic;
-		enable	 : in std_logic;
+--		dataIn 	: in std_logic;
+--		enable	 : in std_logic;
 		clk     : in std_logic;
+		reset   : in std_logic;
 		dataOut	: out std_logic := '0';
 		readbit	: out std_logic := '0';
 		error		 : out std_logic := '0'
@@ -23,6 +24,7 @@ type state_type_send is (idle , sendData);
 signal state: state_type;
 signal state_sendReadbit : state_type_send;
 signal sendReadbit : integer := 0;
+signal dataIn, enable : std_logic;
 begin
 -- process on enable
 bitsampler_proc : process (clk)
@@ -100,3 +102,38 @@ end if;
 end process;
 	
 end architecture BitSamplerArc;
+
+-------------------------------------------------------------------------------
+-- For test only
+-------------------------------------------------------------------------------
+
+architecture TestBitSampler of BitSampler is
+
+constant bitperiod : time := 10 ns;
+
+begin
+genIrData : process
+constant testData : std_logic_vector(11 downto 0) := "100110011001"; -- last bit must be 1 to stop the clk
+variable bitCount : integer;
+begin
+  bitCount := 11;
+  wait until reset = '0';
+  wait until clk = '1';
+  
+  for bitCount in 11 downto 0 loop
+    error <= '0';
+    dataOut <= testData(bitCount);
+    readbit <= '1';
+    wait for bitperiod*3;
+    wait until clk = '1';
+  
+    readbit <= '0';
+    wait for bitperiod;
+    wait until clk = '1';
+  end loop;
+  
+  wait;
+  
+end process;
+
+end architecture TestBitSampler;
