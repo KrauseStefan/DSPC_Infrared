@@ -10,7 +10,6 @@ set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartu
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/auk_dspip_avalon_streaming_sink_hpfir.vhd]
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/auk_dspip_avalon_streaming_source_hpfir.vhd]
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/auk_dspip_roundsat_hpfir.vhd]
-set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/filter_0002_rtl_wysiwyg.vhd]
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/filter_0002_rtl.vhd]
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/filter_0002_ast.vhd]
 set_global_assignment -library "lib_filter" -name VHDL_FILE [file join $::quartus(qip_path) filter/filter_0002.vhd]

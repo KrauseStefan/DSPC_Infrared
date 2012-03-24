@@ -82,7 +82,6 @@ if [ $SKIP_COM -eq 0 ]; then
   ncvhdl -v93 "$QSYS_SIMDIR/auk_dspip_avalon_streaming_sink_hpfir.vhd"      
   ncvhdl -v93 "$QSYS_SIMDIR/auk_dspip_avalon_streaming_source_hpfir.vhd"    
   ncvhdl -v93 "$QSYS_SIMDIR/auk_dspip_roundsat_hpfir.vhd"                   
-  ncvhdl -v93 "$QSYS_SIMDIR/filter_rtl_wysiwyg.vhd"                         
   ncvhdl -v93 "$QSYS_SIMDIR/filter_rtl.vhd"                                 
   ncvhdl -v93 "$QSYS_SIMDIR/filter_ast.vhd"                                 
   ncvhdl -v93 "$QSYS_SIMDIR/filter.vhd"                                     

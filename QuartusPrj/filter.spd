@@ -13,7 +13,6 @@
    path="filter_sim/auk_dspip_avalon_streaming_source_hpfir.vhd"
    type="VHDL" />
  <file path="filter_sim/auk_dspip_roundsat_hpfir.vhd" type="VHDL" />
- <file path="filter_sim/filter_rtl_wysiwyg.vhd" type="VHDL" />
  <file path="filter_sim/filter_rtl.vhd" type="VHDL" />
  <file path="filter_sim/filter_ast.vhd" type="VHDL" />
  <file path="filter_sim/filter.vhd" type="VHDL" />

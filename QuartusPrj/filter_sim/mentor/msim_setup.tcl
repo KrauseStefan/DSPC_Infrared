@@ -113,7 +113,6 @@ alias com {
   vcom "$QSYS_SIMDIR/auk_dspip_avalon_streaming_sink_hpfir.vhd"      
   vcom "$QSYS_SIMDIR/auk_dspip_avalon_streaming_source_hpfir.vhd"    
   vcom "$QSYS_SIMDIR/auk_dspip_roundsat_hpfir.vhd"                   
-  vcom "$QSYS_SIMDIR/filter_rtl_wysiwyg.vhd"                         
   vcom "$QSYS_SIMDIR/filter_rtl.vhd"                                 
   vcom "$QSYS_SIMDIR/filter_ast.vhd"                                 
   vcom "$QSYS_SIMDIR/filter.vhd"                                     

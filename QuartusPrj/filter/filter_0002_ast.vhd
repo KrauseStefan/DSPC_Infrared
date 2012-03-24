@@ -22,7 +22,7 @@ use work.auk_dspip_math_pkg_hpfir.all;
 entity filter_0002_ast is
   generic (
   INWIDTH             : integer := 8;
-  FULL_WIDTH          : integer := 22;
+  FULL_WIDTH          : integer := 46;
   BANKINWIDTH         : integer := 0;
   REM_LSB_BIT_g       : integer := 14;
   REM_LSB_TYPE_g      : string := "Truncation";
@@ -32,7 +32,7 @@ entity filter_0002_ast is
   PHYSCHANOUT         : integer := 1;
   CHANSPERPHYIN       : natural := 1;
   CHANSPERPHYOUT      : natural := 1;
-  OUTPUTFIFODEPTH     : integer := 8;
+  OUTPUTFIFODEPTH     : integer := 16;
   USE_PACKETS         : integer := 0;
   ENABLE_BACKPRESSURE : boolean := false;
   LOG2_CHANSPERPHYOUT : natural := log2_ceil_one(1);
@@ -104,7 +104,7 @@ component filter_0002_rtl is
     xIn_0              : in std_logic_vector(8 - 1 downto 0);
     xOut_v             : out std_logic_vector(0 downto 0);
     xOut_c             : out std_logic_vector(7 downto 0);
-    xOut_0             : out std_logic_vector(22 - 1 downto 0);
+    xOut_0             : out std_logic_vector(46 - 1 downto 0);
     clk                : in std_logic;
     areset             : in std_logic;
     bus_clk            : in std_logic;
@@ -181,7 +181,7 @@ hpfircore: filter_0002_rtl
      xIn_0     => data_in((0 + 8) * 0 + 8 - 1 downto (0 + 8) * 0),
      xOut_v    => core_out_valid,
      xOut_c    => core_out_channel,
-     xOut_0   => core_out(22 * 0 + 22 - 1 downto 22 * 0),
+     xOut_0   => core_out(46 * 0 + 46 - 1 downto 46 * 0),
      clk       => clk,
      areset    => reset_fir,
      bus_clk   => bus_clk,

@@ -13,7 +13,7 @@ architecture bench of DeModulator_tb is
 			reset_n : in  std_logic;
 			data    : out std_logic := '0';
 			valid   : out std_logic := '0';
-			intData : out std_logic := '0'
+			intData : out std_logic_vector (7 downto 0)
 		);
 	end component;
 
@@ -21,7 +21,7 @@ architecture bench of DeModulator_tb is
 	signal IR_RX   : std_logic;
 	signal data    : std_logic := '0';
 	signal valid   : std_logic := '0';
-	signal intData : std_logic := '0';
+	signal intData : std_logic_vector (7 downto 0);
 
 	constant clock_period   : time    := 500 ns; -- 2 MHz;
 	constant IrClock_period : time    := 27 us;

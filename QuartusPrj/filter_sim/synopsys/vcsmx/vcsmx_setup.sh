@@ -82,7 +82,6 @@ if [ $SKIP_COM -eq 0 ]; then
   vhdlan -xlrm "$QSYS_SIMDIR/auk_dspip_avalon_streaming_sink_hpfir.vhd"      
   vhdlan -xlrm "$QSYS_SIMDIR/auk_dspip_avalon_streaming_source_hpfir.vhd"    
   vhdlan -xlrm "$QSYS_SIMDIR/auk_dspip_roundsat_hpfir.vhd"                   
-  vhdlan -xlrm "$QSYS_SIMDIR/filter_rtl_wysiwyg.vhd"                         
   vhdlan -xlrm "$QSYS_SIMDIR/filter_rtl.vhd"                                 
   vhdlan -xlrm "$QSYS_SIMDIR/filter_ast.vhd"                                 
   vhdlan -xlrm "$QSYS_SIMDIR/filter.vhd"                                     
