@@ -11,8 +11,6 @@ entity BitSampler is
 		dataOut	: out std_logic := '0';
 		readbit	: out std_logic := '0';
 		error		 : out std_logic := '0'
-		
-		
 	);
 end entity BitSampler;
 
