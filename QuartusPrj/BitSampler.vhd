@@ -7,9 +7,10 @@ entity BitSampler is
 		dataIn 	: in std_logic;
 		enable	 : in std_logic;
 		clk     : in std_logic;
-		dataOut	: out std_logic;
-		readbit	: out std_logic;
-		error		 : out std_logic
+		dataOut	: out std_logic := '0';
+		readbit	: out std_logic := '0';
+		error		 : out std_logic := '0'
+		
 		
 	);
 end entity BitSampler;
@@ -27,10 +28,14 @@ begin
 bitsampler_proc : process (clk)
 variable firstbit, secondbit : std_logic;
 variable samplebit : std_logic_vector (1 downto 0);
+constant readbitOpen : integer := 3;
+variable readbitCounter : integer := 0;
+
 begin
   if rising_edge(clk) then 
 		case state is
 			when idle => -- W8 for the enable bit, which signals bitsample will get first data
+
 				if enable = '1' then
 					state <= firstBitRecived;
 				end if;
@@ -74,15 +79,8 @@ begin
 				sendReadbit <= 1;
 				state <= idle;
 			end case;
-end if;
-end process;
-
-BitsamplerSendReadbit : process(clk)
-constant readbitOpen : integer := 3;
-variable readbitCounter : integer; 
-begin
-if rising_edge(clk) then
-  case state_sendReadbit is
+			
+			case state_sendReadbit is
   when idle =>
     if sendReadbit = 1 then
       state_sendReadbit <= sendData;
@@ -99,6 +97,6 @@ if rising_edge(clk) then
   end case;
   
 end if;
-end process; 
+end process;
 	
 end architecture BitSamplerArc;

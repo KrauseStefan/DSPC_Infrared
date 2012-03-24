@@ -12,9 +12,9 @@ architecture bench of BitSampler_TB is
       dataIn 	: in std_logic;
   		  enable	 : in std_logic;
   		  clk     : in std_logic;
-    		dataOut	: out std_logic := '0';
-    		readbit	: out std_logic := '0';
-    		error		 : out std_logic := '0'
+    		dataOut	: out std_logic;
+    		readbit	: out std_logic;
+    		error		 : out std_logic 
 		);
 end component;
   
@@ -48,11 +48,15 @@ end component;
   stimulus: process 
   begin
     -- Enable High.
+    wait for clkperiode;
+    enable <= '0';
+    wait for clkperiode;
+    
     enable <= '1';
     wait for clkperiode;
     
     -- Read data.
-    dataIn <= '1';
+    dataIn <= '0';
     wait for clkperiode;
     
     -- Enable Low
@@ -61,6 +65,7 @@ end component;
     
     -- Enable high
     enable <= '1';
+    dataIn <= '1';
     wait for clkperiode;
     
     dataIn <= '0';
@@ -68,7 +73,7 @@ end component;
     wait for clkperiode;
     -- Wait until every state in Bitsample have been countet for
 
-     wait for clkperiode * 4;    
+     wait for clkperiode * 6;    
      stop_the_clock <= true;
      wait;
  end process;
@@ -78,6 +83,7 @@ begin
     clk <= '0', '1' after clkperiode / 2;
     wait for clkperiode;
   end loop;
+  wait;
 end process;     
     
   end; -- archtecture
