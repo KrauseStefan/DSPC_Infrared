@@ -20,6 +20,7 @@ transcript
 db/
 incremental_db/
 work/
+.sopc_builder/
 
 *.avrsuo
 

@@ -2,11 +2,11 @@ library IEEE;
 use IEEE.Std_logic_1164.all;
 use IEEE.Numeric_Std.all;
 
-entity Counter_tb is
+entity DeModulator_tb is
 end;
 
-architecture bench of Counter_tb is
-	component Counter
+architecture bench of DeModulator_tb is
+	component DeModulator
 		port(
 			clk      : in  std_logic;
 			IR_RX    : in  std_logic;
@@ -26,7 +26,7 @@ architecture bench of Counter_tb is
 	signal valid    : std_logic := '0';
 	signal intValid : std_logic := '0';
 
-	constant clock_period   : time    := 500 ns;
+	constant clock_period   : time    := 500 ns; -- 2 MHz;
 	constant IrClock_period : time    := 27 us;
 	constant Ir_signals     : integer := 32;
 
@@ -34,7 +34,7 @@ architecture bench of Counter_tb is
 	signal stop_the_Irclock : boolean := false;
 
 begin
-	uut : Counter port map(clk      => clk,
+	uut : DeModulator port map(clk      => clk,
 			               IR_RX    => IR_RX,
 			               sr_in    => sr_in,
 			               shift    => shift,
@@ -50,8 +50,8 @@ begin
 
 		-- Put test bench stimulus code here
 
-		stop_the_clock   <= false;
---		stop_the_Irclock <= false;
+		stop_the_clock <= false;
+		--		stop_the_Irclock <= false;
 		wait;
 	end process;
 
@@ -59,10 +59,10 @@ begin
 		variable Ir_recived : integer := 0;
 	begin
 		while not stop_the_Irclock loop
-			IR_RX      <= '0', '1' after IrClock_period / 3 * 2;
-			if(Ir_recived = Ir_signals) then
---				stop_the_Irclock <= true;
-				IR_RX <= '0';
+			IR_RX <= '0', '1' after IrClock_period / 3 * 2;
+			if (Ir_recived = Ir_signals) then
+				-- stop_the_Irclock <= true;
+				IR_RX      <= '0';
 				Ir_recived := 0;
 				wait for 889 us;
 			else

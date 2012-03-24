@@ -2710,7 +2710,7 @@ SYSTEM Cpu_Infrared
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>4F6D9781</b> (timestamp: Sat Mar 24, 2012 @10:44 AM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>4F6DA715</b> (timestamp: Sat Mar 24, 2012 @11:51 AM)";
             MESSAGES 
             {
             }
@@ -2719,7 +2719,7 @@ SYSTEM Cpu_Infrared
       WIZARD_SCRIPT_ARGUMENTS 
       {
          id = "0u";
-         timestamp = "1332582273u";
+         timestamp = "1332586261u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2728,7 +2728,7 @@ SYSTEM Cpu_Infrared
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000000 --id=0 --timestamp=1332582273";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000000 --id=0 --timestamp=1332586261";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
