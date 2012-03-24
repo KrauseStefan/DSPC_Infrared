@@ -20,7 +20,8 @@ architecture test of IR_Receiver_TB is
 		  clk       : in std_logic;
 		  reset     : in std_logic;
 		  cmd       : out std_logic_vector(11 downto 0);
-		  errorBit  : out std_logic
+		  errorBit  : out std_logic;
+		  testBit   : out integer
 	 );
 	end component;
   
@@ -31,6 +32,7 @@ architecture test of IR_Receiver_TB is
   signal reset: std_logic;
   signal cmd: std_logic_vector(11 downto 0);
   signal errorBit: std_logic;
+  signal testBit : integer;
 
   constant clock_period: time := 10 ns;
   signal stop_the_clock: boolean;
@@ -44,37 +46,121 @@ UUT : InfraredReciver port map( clk      => clk,
                                 enable   => enable,
                                 error    => error,
                                 cmd      => cmd,
-                                errorBit => errorBit);
+                                errorBit => errorBit,
+                                testBit => testBit);
 
 stimulus: process
 begin
-
+  reset <= '1';
+  wait for clock_period;
+  
+  reset <= '0';
+  wait for clock_period;
+  
+  -- data 1
+  error <= '0';
   data <= '1';
   enable <= '1';
-  wait for clock_period;
+  wait for clock_period*2;
   
+  enable <= '0';
+  wait for clock_period;
+
+  -- data 2  
+  enable <= '1';
   data <= '0';
   wait for clock_period;
   
+  enable <= '0';
+  wait for clock_period;
+
+  -- data 3  
+  enable <= '1';
   data <= '1';
   wait for clock_period;
   
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 4
+  enable <= '1';
   data <= '0';
   wait for clock_period;
   
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 5
+  enable <= '1';
   data <= '1';
   wait for clock_period;
   
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 6
+  enable <= '1';
+  data <= '0';
+  wait for clock_period;
+
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 7
+  enable <= '1';
+  data <= '1';
+  wait for clock_period;
+  
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 8
+  enable <= '1';
   data <= '0';
   wait for clock_period;
   
-  data <= '1';
+  enable <= '0';
   wait for clock_period;
   
+  -- data 9
+  enable <= '1';
   data <= '0';
   wait for clock_period;
   
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 10
+  enable <= '1';
+  data <= '0';
+  wait for clock_period;
+  
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 11
+  enable <= '1';
+  data <= '0';
+  wait for clock_period;
+  
+  enable <= '0';
+  wait for clock_period;
+  
+  -- data 12
+  enable <= '1';
   data <= '1';
+  wait for clock_period;
+  
+  enable <= '0';
+  wait for clock_period*3;
+  
+  -- data 13
+  enable <= '1';
+  data <= '0';
+  wait for clock_period;
+  
+  enable <= '0';
+  
   wait for clock_period * 4;
 
   stop_the_clock <= true;

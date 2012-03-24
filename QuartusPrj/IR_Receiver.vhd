@@ -10,14 +10,15 @@ entity InfraredReciver is
 		error : 	in std_logic;
 		clk : 	in std_logic;
 		reset : 	in std_logic;
-		cmd : 	out std_logic_vector(11 downto 0);
-		errorBit : out std_logic
+		cmd : 	out std_logic_vector(11 downto 0) := "000000000000";
+		errorBit : out std_logic;
+		testBit: out integer
 	);
 end entity InfraredReciver;
 
 architecture InfraredReciver_Arc of InfraredReciver is
 
-type state_type is (idle, get_data, last_data, wait_for_low_enable, data_ready);
+type state_type is (idle, get_data, data_received, wait_for_low_enable, data_ready);
 signal state : state_type := idle;
 
 signal sampling_error : std_logic;
@@ -41,29 +42,33 @@ begin
 					end if;
 				when get_data =>
 					if enable = '1' then
-						if 12 > bit_count then
+						if (0 <= bit_count) then
 							sampling_cmd(bit_count) <= data;
 							bit_count := bit_count - 1;
 							
+							--testBit <= bit_count; -- TEST
+							
 							if error = '1' then 			-- if error has occur
-								sampling_error <= '1';
+								  sampling_error <= '1';
+							end if;
+              
+              if (bit_count >= 0 ) then
+							   state <= wait_for_low_enable;
+							   errorBit <= '0'; -- TEST
+							else
+							  errorBit <= '1'; -- TEST
+                state <= data_received;
 							end if;
 							
-							if bit_count > -1 then
-								state <= wait_for_low_enable;
-							else
-								state <= last_data;
-							end if;
 						end if;
 					end if;
-				when last_data =>
-					bit_count := bit_count - 1;
+				when data_received =>
 					cmd <= sampling_cmd;
 					errorBit <= sampling_error;
 					state <= data_ready;
 				when wait_for_low_enable =>
 					if enable = '0' then
-						if bit_count > -1 then
+						if bit_count >= 0 then
 							state <= get_data;
 						else
 							state <= idle;
@@ -71,8 +76,10 @@ begin
 					end if;
 				when data_ready =>
 					--signal bus
+					
 					state <= wait_for_low_enable;
 			end case;
+			testBit <= bit_count; -- TEST
 		end if;
 	end if;
 end process;
