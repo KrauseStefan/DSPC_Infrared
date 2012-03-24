@@ -14,6 +14,8 @@ architecture bench of BitSampler_TB is
     		dataOut	: out std_logic;
     		readbit	: out std_logic;
     		error		 : out std_logic;
+    		first   : out std_logic;
+		  second  : out std_logic;
     		IR_RX   : in std_logic 
 		);
 end component;
@@ -26,6 +28,7 @@ end component;
   signal error  : std_logic;
   signal reset  : std_logic;
   signal IR_RX  : std_logic;
+  signal first, second : std_logic := '0';
   
   
   -- signal med data - skal muligvis ændres til en anden type data
@@ -37,7 +40,7 @@ end component;
   signal stop_the_clock : boolean;
   
   begin 
-    bitsampler_inst : BitSampler
+    bitsampler_inst : entity work.BitSampler(BitSamplerArc)
     
         port map (
             clk     =>  clk,
@@ -45,6 +48,8 @@ end component;
             dataOut =>  dataOut,
             readbit =>  readbit,
             error   =>  error,
+            second => second,
+            first => first,
             IR_RX   =>  IR_RX
             );
             

@@ -12,7 +12,7 @@ entity InfraredReciver is
 		reset : 	in std_logic;
 		cmd : 	out std_logic_vector(11 downto 0) := "000000000000";
 		errorBit : out std_logic;
-		testBit: out integer;
+		testBit: out std_logic;
 		
 		--Forwared signals
 		IR_RX : in std_logic
@@ -50,7 +50,9 @@ begin
 					if enable = '1' then
 						if (0 <= bit_count) then
 							sampling_cmd(bit_count) <= data;
+							testBit <= data;
 							bit_count := bit_count - 1;
+							
 							
 							if error = '1' then 			-- if error has occur
 								  sampling_error <= '1';
@@ -58,9 +60,7 @@ begin
               
               if (bit_count >= 0 ) then
 							   state <= wait_for_low_enable;
-							   errorBit <= '0'; -- TEST
 							else
-							  errorBit <= '1'; -- TEST
                 state <= data_received;
 							end if;
 						end if;
@@ -82,7 +82,7 @@ begin
 					
 					state <= wait_for_low_enable;
 			end case;
-			testBit <= bit_count; -- TEST
+			--testBit <= bit_count; -- TEST
 		end if;
 	end if;
 end process;

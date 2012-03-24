@@ -26,7 +26,7 @@ architecture test of IR_Receiver_TB is
   signal reset: std_logic := '1';
   signal cmd: std_logic_vector(11 downto 0);
   signal errorBit: std_logic;
-  signal testBit : integer;
+  signal testBit : std_logic;
 
   constant clock_period: time := 10 ns;
   signal stop_the_clock: boolean;

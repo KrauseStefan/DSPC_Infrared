@@ -83,12 +83,12 @@ begin
 		constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001"; -- last bit must be 1 to stop the clk
 		variable bitCount : integer;
 	begin
-		bitCount := 22;
+		bitCount := 23;
 		valid    <= '0';
 		wait until reset_n = '0';
 		wait until clk = '1';
 
-		for bitCount in 22 downto 0 loop
+		for bitCount in 23 downto 0 loop
 			data  <= testData(bitCount);
 			valid <= '1';
 			wait for bitperiod * 3;
