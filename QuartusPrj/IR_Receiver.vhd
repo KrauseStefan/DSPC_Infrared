@@ -12,7 +12,11 @@ entity InfraredReciver is
 		reset : 	in std_logic;
 		cmd : 	out std_logic_vector(11 downto 0) := "000000000000";
 		errorBit : out std_logic;
-		testBit: out integer
+		testBit: out integer;
+		
+		--Forwared signals
+		IR_TX : in std_logic
+		
 	);
 end entity InfraredReciver;
 
@@ -90,6 +94,8 @@ sampler : entity work.BitSampler(TestBitSampler) port map ( dataOut => data,
                                         clk => clk,
                                         reset => reset, 
                                         readbit => enable,
-                                        error => error);
+                                        error => error,
+                                        IR_TX => IR_TX
+                                        );
 
 end architecture InfraredReciver_Arc;
