@@ -9,6 +9,8 @@ entity BitSampler is
 		dataOut : out std_logic := '0';
 		readbit : out std_logic := '0';
 		error   : out std_logic := '0';
+		first   : out std_logic;
+		second  : out std_logic;
 
 		-- Forwared signals
 		IR_RX   : in  std_logic
@@ -40,6 +42,7 @@ begin
 					end if;
 				when firstBitRecived => -- 
 					firstbit := dataIn;
+					first <= dataIn; -- TEST
 					state    <= waitForEnable;
 				when waitForEnable =>
 					if enable = '0' then
@@ -48,6 +51,7 @@ begin
 				when secondBitRecived =>
 					if enable = '1' then
 						secondbit := dataIn;
+						second <= dataIn; -- TEST
 						state     <= validateData;
 					end if;
 				when validateData =>
