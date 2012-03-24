@@ -77,7 +77,7 @@ end component;
     
     reset <= '0';
 
-     wait for clkperiode * 800;    
+     wait for clkperiode * 100;    
      stop_the_clock <= true;
      wait;
  end process;
