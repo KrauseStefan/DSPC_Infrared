@@ -9,9 +9,8 @@ architecture bench of BitSampler_TB is
 
   component BitSampler
     Port(
-      dataIn 	: in std_logic;
-  		  enable	 : in std_logic;
   		  clk     : in std_logic;
+  		  reset   : in std_logic;
     		dataOut	: out std_logic;
     		readbit	: out std_logic;
     		error		 : out std_logic 
@@ -24,6 +23,7 @@ end component;
   signal dataOut: std_logic;
   signal readbit: std_logic;
   signal error  : std_logic;
+  signal reset  : std_logic;
   
   
   -- signal med data - skal muligvis ændres til en anden type data
@@ -38,9 +38,8 @@ end component;
     bitsampler_inst : BitSampler
     
         port map (
-            dataIn  =>  dataIn,
-            enable  =>  enable,
             clk     =>  clk,
+            reset   =>  reset,
             dataOut =>  dataOut,
             readbit =>  readbit,
             error   =>  error);
@@ -48,32 +47,37 @@ end component;
   stimulus: process 
   begin
     -- Enable High.
-    wait for clkperiode;
-    enable <= '0';
-    wait for clkperiode;
+--    wait for clkperiode;
+--    enable <= '0';
+--    wait for clkperiode;
     
-    enable <= '1';
-    wait for clkperiode;
+--    enable <= '1';
+--    wait for clkperiode;
     
     -- Read data.
-    dataIn <= '0';
-    wait for clkperiode;
+--    dataIn <= '0';
+--    wait for clkperiode;
     
     -- Enable Low
-    enable <= '0';
-    wait for clkperiode;
+--    enable <= '0';
+--    wait for clkperiode;
     
     -- Enable high
-    enable <= '1';
-    dataIn <= '1';
-    wait for clkperiode;
+--    enable <= '1';
+--    dataIn <= '1';
+--    wait for clkperiode;
     
-    dataIn <= '0';
-    enable <= '0';
-    wait for clkperiode;
+--    dataIn <= '0';
+--    enable <= '0';
+--    wait for clkperiode;
     -- Wait until every state in Bitsample have been countet for
+    
+    reset <= '1';
+    wait for clkperiode*3;
+    
+    reset <= '0';
 
-     wait for clkperiode * 6;    
+     wait for clkperiode * 800;    
      stop_the_clock <= true;
      wait;
  end process;
