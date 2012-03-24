@@ -4,8 +4,6 @@ use ieee.numeric_std.all;
 
 entity BitSampler is
 	port (
---		dataIn 	: in std_logic;
---		enable	 : in std_logic;
 		clk     : in std_logic;
 		reset   : in std_logic;
 		dataOut	: out std_logic := '0';
@@ -99,7 +97,15 @@ begin
 end if;
 end process;
 	
+modulator : entity work.DeModulator(TestDeModulator) port map(
+--modulator : entity work.DeModulator(DeModulator_Arc) port map(
+                                                        clk => clk,
+                                                        reset_n => reset,
+                                                        data => dataIn,
+                                                        valid => enable);
 end architecture BitSamplerArc;
+
+
 
 -------------------------------------------------------------------------------
 -- For test only
