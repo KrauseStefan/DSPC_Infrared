@@ -16,7 +16,14 @@ set_global_assignment -name TCL_FILE [file join $::quartus(ip_rootpath) Universi
 set_global_assignment -name VERILOG_FILE [file join $::quartus(qip_path) clocks_0.v]
 # sysid_0
 # null
-set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID "002710CE2A480000013644551A13"
-set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_NAME "sopc"
-set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_VERSION "11.1"
-set_global_assignment -entity "Cpu_Infrared" -name IP_TOOL_ENV "sopc"
+# Infrared_compomnent_0
+set_global_assignment -name TCL_FILE [file join $::quartus(qip_path) Infrared_compomnent_hw.tcl]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) Infrared_compomnent.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) BitSampler.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) DeModulator.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) filter.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) FilterControl.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) IR_Receiver.vhd]
+set_global_assignment -name VHDL_FILE [file join $::quartus(qip_path) Infrared_compomnent_0.vhd]
+set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 00216B6042AA000001364610E682 
+ 

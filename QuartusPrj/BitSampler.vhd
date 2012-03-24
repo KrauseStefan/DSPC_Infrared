@@ -107,8 +107,8 @@ begin
 		end if;
 	end process;
 
-	modulator : entity work.DeModulator(TestDeModulator) port map(
-			--modulator : entity work.DeModulator(DeModulator_Arc) port map(
+	--modulator : entity work.DeModulator(TestDeModulator) port map(
+			modulator : entity work.DeModulator(DeModulator_Arc) port map(
 			clk     => clk,
 			reset_n => reset,
 			data    => dataIn,

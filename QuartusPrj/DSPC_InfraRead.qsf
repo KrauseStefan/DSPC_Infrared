@@ -41,7 +41,7 @@ set_global_assignment -name DEVICE EP2C35F672C6
 set_global_assignment -name TOP_LEVEL_ENTITY DSPC_InfraRead_toplevel
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 11.1
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "08:27:54  MARCH 06, 2012"
-set_global_assignment -name LAST_QUARTUS_VERSION 11.1
+set_global_assignment -name LAST_QUARTUS_VERSION 11.0
 set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
 set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
 set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
@@ -57,6 +57,7 @@ set_global_assignment -name QIP_FILE Cpu_Infrared.qip
 set_global_assignment -name BDF_FILE DSPC_InfraRead_toplevel.bdf
 set_global_assignment -name VHDL_FILE FilterControl.vhd
 set_global_assignment -name VHDL_FILE filter.vhd
+<<<<<<< HEAD
 set_global_assignment -name QIP_FILE filter.qip
 set_location_assignment PIN_N25 -to SW[0]
 set_location_assignment PIN_N26 -to SW[1]
@@ -483,4 +484,7 @@ set_location_assignment PIN_V24 -to GPIO_1[32]
 set_location_assignment PIN_V23 -to GPIO_1[33]
 set_location_assignment PIN_W25 -to GPIO_1[34]
 set_location_assignment PIN_W23 -to GPIO_1[35]
+=======
+set_global_assignment -name VHDL_FILE Infrared_compomnent.vhd
+>>>>>>> mm bus added to SOPC
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

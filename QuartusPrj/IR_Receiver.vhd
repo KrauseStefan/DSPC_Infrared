@@ -5,9 +5,6 @@ use IEEE.Numeric_Std.all;
 
 entity InfraredReciver is
 	port (
---		data : 	in std_logic;
---    enable :	in std_logic;
---    error : 	in std_logic;
 		clk : 	in std_logic;
 		reset : 	in std_logic;
 		cmd : 	out std_logic_vector(11 downto 0) := "000000000000";

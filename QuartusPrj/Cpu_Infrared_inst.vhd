@@ -18,6 +18,7 @@
       SRAM_WE_N_from_the_sram_0 => SRAM_WE_N_from_the_sram_0,
       clocks_0_sys_clk_out => clocks_0_sys_clk_out,
       out_port_from_the_pio_0 => out_port_from_the_pio_0,
+      IR_RX_to_the_Infrared_compomnent_0 => IR_RX_to_the_Infrared_compomnent_0,
       clk_0 => clk_0,
       in_port_to_the_pio_1 => in_port_to_the_pio_1,
       reset_n => reset_n
