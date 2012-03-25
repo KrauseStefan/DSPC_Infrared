@@ -1,16 +1,13 @@
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 entity DeModulator is
 	port(
 		clk     : in  std_logic;        -- 1,512 MHz not during test
 		reset_n : in  std_logic;
 		IR_RX   : in  std_logic;
-		data    : out std_logic := '0';
-		valid   : out std_logic := '0';
-		
-		intData : out std_logic_vector (7 downto 0)
-		
+		data    : out std_logic := '0'
 	);
 end entity DeModulator;
 
@@ -18,91 +15,98 @@ architecture DeModulator_Arc of DeModulator is
 	-- clock freq: 2MHz
 	-- bit time Period: 889us
 	-- 1778 tics = 889us/(1/2MHz)
-	constant BIT_TIME                  : integer := 1778; --us
-	constant clkHoldCount              : integer := BIT_TIME / 4; -- 1/4 of a recive cycle.
-	constant ACCEPTABLE_LOW_TIME_COUNT : integer := BIT_TIME * 4 / (32 * 3); -- 1/4 of a recive cycle.
-	signal sr_in, shift, intValid      : std_logic;
+	constant BIT_TIME          : integer := 1778; --us
+	constant HOLD_TICS         : integer := BIT_TIME / (32 * 2); -- hold for half a mod cycle
+	constant MODULATION_CYCLES : integer := 32;
 
+	type deModulatorStates is (low, high);
+	signal deModState : deModulatorStates := low;
+	signal dataCounter : integer;
+	signal idleCounter : integer;
+	signal holdCounter : integer;
+	
+	-- preVal is '1' to make sure we don't get false reading if reset is used.
+	signal preVal      : std_logic := '1';
+	signal intData     : std_logic;
 begin
 	FilterControl1 : entity work.FilterControl
 		port map(clk     => clk,
 			     reset_n => reset_n,
-			     IR_RX   => IR_RX
-			     );
+			     IR_RX   => IR_RX,
+			     data    => intData
+		);
 
 	receive : process(clk) is
-		variable bitShiftReg   : std_logic_vector(11 downto 0) := x"000";
-		variable rcvCount      : integer                       := 0;
-		variable rcvCountSmall : integer                       := 0;
-		variable isHigh        : boolean                       := false;
-		variable holdCount     : integer                       := 0;
 	begin
-		if rising_edge(clk) then
-			bitShiftReg(11 downto 1) := bitShiftReg(10 downto 0);
-			bitShiftReg(0) := IR_RX;
-
-			if (bitShiftReg = x"FFF" and isHigh = false) then
-				rcvCount  := 1 + rcvCount;
-				isHigh    := true;
-				holdCount := holdCount + 1;
-			elsif (not (bitShiftReg = x"FFF") and isHigh = true) then
-				isHigh    := false;
-				holdCount := 0;
-			end if;
-
-			if (rcvCount = 32) then
-				intValid  <= '1';
-				rcvCount  := 0;
-				holdCount := 0;
-			end if;
-
-			if (holdCount < ACCEPTABLE_LOW_TIME_COUNT) then
-				data <= '1';
+		if reset_n = '1' then
+			preVal <= '1';
+			data   <= '0';
+		elsif rising_edge(clk) then
+			preVal <= intData;
+			-- if rising edge
+			if preVal = '0' and intData = '1' then
+				dataCounter <= dataCounter + 1;
+				idleCounter <= 0;
 			else
-				data      <= '0';
-				holdCount := ACCEPTABLE_LOW_TIME_COUNT;
+				idleCounter <= idleCounter + 1;
 			end if;
 
-			if (holdCount < clkHoldCount) then
-				holdCount := holdCount + 1;
-				if (holdCount = clkHoldCount) then
-					intValid <= '0';
-				end if;
-			end if;
+			case deModState is
+				when low =>
+					data <= '0';
+					if dataCounter = MODULATION_CYCLES then
+						deModState <= high;
+					end if;
+				when high =>
+					data <= '1';
+					if (HOLD_TICS <= holdCounter) then
+						deModState  <= low;
+						holdCounter <= 0;
+						data        <= '0';
+					else
+						holdCounter <= holdCounter + 1;
+					end if;
+				when others => null;
+			end case;
 
 		end if;
 	end process receive;
 
 end architecture DeModulator_Arc;
 
-architecture TestDeModulator of DeModulator is
-	constant bitperiod : time := 10 ns;
+--------------------------------------
+-- flyt alt nedenfor til en anden fil.
+--------------------------------------
 
-begin
-	genIrData : process
-		constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001"; -- last bit must be 1 to stop the clk
-		variable bitCount : integer;
-	begin
-		bitCount := 23;
-		valid    <= '0';
-		wait until reset_n = '0';
-		wait until clk = '1';
 
-		for bitCount in 23 downto 0 loop
-			data  <= testData(bitCount);
-			valid <= '1';
-			wait for bitperiod * 3;
-			wait until clk = '1';
-
-			valid <= '0';
-			wait for bitperiod;
-			wait until clk = '1';
-		end loop;
-
-		wait;
-
-	end process;
-
-end architecture TestDeModulator;
-
+--architecture TestDeModulator of DeModulator is
+--	constant bitperiod : time := 10 ns;
+--
+--begin
+--	genIrData : process
+--		constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001"; -- last bit must be 1 to stop the clk
+--		variable bitCount : integer;
+--	begin
+--		bitCount := 23;
+--		valid    <= '0';
+--		wait until reset_n = '0';
+--		wait until clk = '1';
+--
+--		for bitCount in 23 downto 0 loop
+--			data  <= testData(bitCount);
+--			valid <= '1';
+--			wait for bitperiod * 3;
+--			wait until clk = '1';
+--
+--			valid <= '0';
+--			wait for bitperiod;
+--			wait until clk = '1';
+--		end loop;
+--
+--		wait;
+--
+--	end process;
+--
+--end architecture TestDeModulator;
+--
 

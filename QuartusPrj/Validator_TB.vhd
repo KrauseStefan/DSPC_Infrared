@@ -2,12 +2,12 @@ library IEEE;
 USE IEEE.Std_logic_1164.ALL;
 use IEEE.Numeric_Std.all;
 
-entity BitSampler_TB is 
+entity Validator_TB is 
 end;
 
-architecture bench of BitSampler_TB is 
+architecture bench of Validator_TB is 
 
-  component BitSampler
+  component Validator
     Port(
   		  clk     : in std_logic;
   		  reset   : in std_logic;
@@ -31,16 +31,16 @@ end component;
   signal first, second : std_logic := '0';
   
   
-  -- signal med data - skal muligvis ændres til en anden type data
+  -- signal med data - skal muligvis ï¿½ndres til en anden type data
   --signal dataInValue : unsigned(23 downto 0) := "0110011000";
   
-  -- clk perioden skal være 
+  -- clk perioden skal vï¿½re 
   constant clkperiode : time := 10 ns;
   
   signal stop_the_clock : boolean;
   
   begin 
-    bitsampler_inst : entity work.BitSampler(BitSamplerArc)
+    Validator_inst : entity work.Validator(ValidatorArc)
     
         port map (
             clk     =>  clk,

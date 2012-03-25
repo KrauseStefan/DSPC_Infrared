@@ -11,14 +11,14 @@ architecture bench of FilterControl_tb is
 			clk     : in  std_logic;
 			reset_n : in  std_logic;
 			IR_RX   : in  std_logic;
-			data    : out std_logic_vector(7 downto 0)
+			data    : out std_logic
 		);
 	end component;
 
 	signal clk     : std_logic;
 	signal reset_n : std_logic;
 	signal IR_RX   : std_logic;
-	signal data    : std_logic_vector(7 downto 0);
+	signal data    : std_logic;
 
 	constant clock_period   : time    := 500 ns; -- 2 MHz;
 	constant IrClock_period : time    := 27 us;

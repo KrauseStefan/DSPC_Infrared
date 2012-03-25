@@ -9,7 +9,7 @@ entity FilterControl is
 
 		IR_RX   : in  std_logic;
 
-		data    : out std_logic_vector(7 downto 0)
+		data    : out std_logic
 	);
 end entity FilterControl;
 
@@ -96,7 +96,7 @@ begin
 				when transfer =>
 					ast_source_ready <= '1';
 					if (ast_source_valid = '1') then
-						data        <= ast_source_data(31 downto 24);
+						data        <= ast_source_data(31);
 						sourceState <= holdOne;
 					end if;
 				when holdOne =>
