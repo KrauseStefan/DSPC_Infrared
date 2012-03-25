@@ -23,7 +23,7 @@ architecture InfraredReciver_Arc of InfraredReciver is
 	signal sampling_cmd   : std_logic_vector(11 downto 0);
 
 	signal data, enable, error : std_logic;
-
+	signal rcvDone : std_logic := '0';
 begin
 	sample : process(clk)
 		variable bit_count : integer;
@@ -60,13 +60,15 @@ begin
 					when data_received =>
 						cmd      <= sampling_cmd;
 						errorBit <= sampling_error;
+						rcvDone  <= '1';
 						state    <= data_ready;
 					when wait_for_low_enable =>
 						if enable = '0' then
 							if bit_count >= 0 then
 								state <= get_data;
 							else
-								state <= idle;
+								rcvDone <= '0';
+								state   <= idle;
 							end if;
 						end if;
 					when data_ready =>
@@ -87,7 +89,8 @@ begin
 			                                                 reset   => reset,
 			                                                 readbit => enable,
 			                                                 error   => error,
-			                                                 IR_RX   => IR_RX
+			                                                 IR_RX   => IR_RX,
+			                                                 rcvDone => rcvDone
 		);
 
 end architecture InfraredReciver_Arc;

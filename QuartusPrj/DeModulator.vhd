@@ -74,39 +74,5 @@ begin
 
 end architecture DeModulator_Arc;
 
---------------------------------------
--- flyt alt nedenfor til en anden fil.
---------------------------------------
 
-
---architecture TestDeModulator of DeModulator is
---	constant bitperiod : time := 10 ns;
---
---begin
---	genIrData : process
---		constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001"; -- last bit must be 1 to stop the clk
---		variable bitCount : integer;
---	begin
---		bitCount := 23;
---		valid    <= '0';
---		wait until reset_n = '0';
---		wait until clk = '1';
---
---		for bitCount in 23 downto 0 loop
---			data  <= testData(bitCount);
---			valid <= '1';
---			wait for bitperiod * 3;
---			wait until clk = '1';
---
---			valid <= '0';
---			wait for bitperiod;
---			wait until clk = '1';
---		end loop;
---
---		wait;
---
---	end process;
---
---end architecture TestDeModulator;
---
 

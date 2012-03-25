@@ -8,12 +8,96 @@ entity BitSampler is
 		reset_n : in  std_logic;
 		data    : out std_logic;
 		valid   : out std_logic;
-		IR_RX   : in  std_logic);
+		IR_RX   : in  std_logic;
+		rcvDone : in  std_logic);
 end entity BitSampler;
 
-
 architecture BitSampler_RTL of BitSampler is
-	
+	type samplerStates is (idle, firstSample, sampling);
+	signal samplerState : samplerStates := idle;
+	signal timer1       : integer       := 0;
+	signal intData      : std_logic;
+	signal preIntData   : std_logic     := '1';
+
+	-- clock freq: 2MHz
+	-- bit time Period: 889us
+	-- 1778 tics = 889us/(1/2MHz)
+	constant SAMPLE_TIC_PERIOD      : integer := 1778;
+	constant HALF_SAMPLE_TIC_PERIOD : integer := SAMPLE_TIC_PERIOD / 2;
+
 begin
-	
+	deModulator_inst : entity work.DeModulator
+		port map(clk     => clk,
+			     reset_n => reset_n,
+			     IR_RX   => IR_RX,
+			     data    => intData);
+
+	SamplerProcess : process(clk, reset_n) is
+	begin
+		preIntData <= intData;
+
+		if reset_n = '1' then
+			valid      <= '0';
+			data       <= '0';
+			preIntData <= '1';
+			timer1     <= 0;
+		elsif rising_edge(clk) then
+			timer1 <= timer1 + 1;
+
+			case samplerState is
+				when idle =>
+					valid <= '0';
+					--Rising edge
+					if intData = '1' and preIntData = '0' then
+						timer1       <= 0;
+						samplerState <= firstSample;
+					end if;
+				when firstSample =>
+					if timer1 >= HALF_SAMPLE_TIC_PERIOD then
+						data         <= intData;
+						timer1       <= 0;
+						samplerState <= sampling;
+					end if;
+				when sampling =>
+					if timer1 >= SAMPLE_TIC_PERIOD then
+						data         <= intData;
+						timer1       <= 0;
+						samplerState <= sampling;
+					end if;
+				when others => null;
+			end case;
+
+		end if;
+	end process SamplerProcess;
+
 end architecture BitSampler_RTL;
+
+architecture TestBitSampler of BitSampler is
+	constant bitperiod : time := 10 ns;
+
+begin
+	genIrData : process
+		constant testData : std_logic_vector(23 downto 0) := "011010010110100101101001"; -- last bit must be 1 to stop the clk
+		variable bitCount : integer;
+	begin
+		bitCount := 23;
+		valid    <= '0';
+		wait until reset_n = '0';
+		wait until clk = '1';
+
+		for bitCount in 23 downto 0 loop
+			data  <= testData(bitCount);
+			valid <= '1';
+			wait for bitperiod * 3;
+			wait until clk = '1';
+
+			valid <= '0';
+			wait for bitperiod;
+			wait until clk = '1';
+		end loop;
+
+		wait;
+
+	end process;
+
+end architecture TestBitSampler;

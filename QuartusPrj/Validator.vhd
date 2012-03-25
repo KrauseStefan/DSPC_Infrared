@@ -13,7 +13,8 @@ entity Validator is
 		second  : out std_logic;
 
 		-- Forwared signals
-		IR_RX   : in  std_logic
+		IR_RX   : in  std_logic;
+		rcvDone : in  std_logic
 	);
 end entity Validator;
 
@@ -113,7 +114,8 @@ begin
 			reset_n => reset,
 			data    => dataIn,
 			valid   => enable,
-			IR_RX   => IR_RX);
+			IR_RX   => IR_RX,
+			rcvDone => rcvDone);
 			
 end architecture ValidatorArc;
 
