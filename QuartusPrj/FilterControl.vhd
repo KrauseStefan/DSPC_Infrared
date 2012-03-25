@@ -22,7 +22,7 @@ architecture rtl of FilterControl is
 	signal ast_sink_valid : std_logic;
 	signal ast_sink_error : std_logic_vector(1 downto 0);
 
-	signal ast_source_data  : std_logic_vector(7 downto 0);
+	signal ast_source_data  : std_logic_vector(31 downto 0);
 	signal ast_source_ready : std_logic;
 	signal ast_source_valid : std_logic;
 	signal ast_source_error : std_logic_vector(1 downto 0);
@@ -34,7 +34,7 @@ begin
 	fir_Filter : entity work.filter port map(
 			clk              => clk,
 			reset_n          => reset_n,
-			coeff_in_clk     => coeff_in_clk,
+			coeff_in_clk     => clk,
 			coeff_in_areset  => coeff_in_areset,
 			--- sink = input
 			ast_sink_data    => ast_sink_data,
@@ -59,7 +59,6 @@ begin
 			ast_sink_valid  <= '0';
 		elsif rising_edge(clk) then
 			coeff_in_areset <= '1';
-			coeff_in_clk    <= clk;
 			case sinkState is
 				when transfer =>
 					if (ast_sink_ready = '1') then
@@ -78,7 +77,6 @@ begin
 				when others => null;
 			end case;
 		elsif falling_edge(clk) then
-			coeff_in_clk <= clk;
 		end if;
 
 --		scaler := scaler + 1;
@@ -98,7 +96,7 @@ begin
 				when transfer =>
 					ast_source_ready <= '1';
 					if (ast_source_valid = '1') then
-						data        <= ast_source_data;
+						data        <= ast_source_data(31 downto 24);
 						sourceState <= holdOne;
 					end if;
 				when holdOne =>

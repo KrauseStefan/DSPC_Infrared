@@ -1,6 +1,6 @@
 -- Infrared_compomnent_0.vhd
 
--- This file was auto-generated as part of a SOPC Builder generate operation.
+-- This file was auto-generated as part of a generation operation.
 -- If you edit it your changes will probably be lost.
 
 library IEEE;

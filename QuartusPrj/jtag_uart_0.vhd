@@ -18,6 +18,9 @@
 library altera;
 use altera.altera_europa_support_lib.all;
 
+library altera_mf;
+use altera_mf.altera_mf_components.all;
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.std_logic_arith.all;
@@ -212,6 +215,9 @@ end europa;
 
 library altera;
 use altera.altera_europa_support_lib.all;
+
+library altera_mf;
+use altera_mf.altera_mf_components.all;
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -418,6 +424,9 @@ end europa;
 
 library altera;
 use altera.altera_europa_support_lib.all;
+
+library altera_mf;
+use altera_mf.altera_mf_components.all;
 
 library ieee;
 use ieee.std_logic_1164.all;
@@ -809,6 +818,9 @@ end europa;
 
 library altera;
 use altera.altera_europa_support_lib.all;
+
+library altera_mf;
+use altera_mf.altera_mf_components.all;
 
 library ieee;
 use ieee.std_logic_1164.all;

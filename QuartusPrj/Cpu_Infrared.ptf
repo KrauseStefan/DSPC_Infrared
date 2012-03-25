@@ -1,7 +1,7 @@
 SYSTEM Cpu_Infrared
 {
-   System_Wizard_Version = "11.00";
-   System_Wizard_Build = "157";
+   System_Wizard_Version = "11.10";
+   System_Wizard_Build = "173";
    Builder_Application = "sopc_builder_ca";
    WIZARD_SCRIPT_ARGUMENTS 
    {
@@ -224,7 +224,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "no_legacy_module";
-      class_version = "7.08110";
+      class_version = "7.08111";
       gtf_class_name = "altera_up_avalon_sram";
       gtf_class_version = "11.0";
       SYSTEM_BUILDER_INFO 
@@ -388,7 +388,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "altera_avalon_jtag_uart";
-      class_version = "7.08110";
+      class_version = "7.08111";
       iss_model_name = "altera_avalon_jtag_uart";
       WIZARD_SCRIPT_ARGUMENTS 
       {
@@ -623,7 +623,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "altera_avalon_pio";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
@@ -770,7 +770,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "altera_avalon_pio";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
@@ -955,7 +955,7 @@ SYSTEM Cpu_Infrared
       {
       }
       class = "altera_avalon_lcd_16207";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
@@ -1120,7 +1120,7 @@ SYSTEM Cpu_Infrared
       {
       }
       class = "altera_avalon_lcd_16207";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
@@ -1251,7 +1251,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "altera_avalon_timer";
-      class_version = "7.08110";
+      class_version = "7.08111";
       iss_model_name = "altera_avalon_timer";
       SYSTEM_BUILDER_INFO 
       {
@@ -2024,7 +2024,7 @@ SYSTEM Cpu_Infrared
          germs_monitor_id = "";
       }
       class = "altera_nios2";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Is_Enabled = "1";
@@ -2033,7 +2033,7 @@ SYSTEM Cpu_Infrared
          Parameters_Signature = "";
          Is_CPU = "1";
          Instantiate_In_System_Module = "1";
-         Required_Device_Family = "STRATIX,STRATIXGX,STRATIXII,STRATIXIIGX,STRATIXIIGXLITE,STRATIXIII,STRATIXIV,STRATIXV,CYCLONE,CYCLONEII,CYCLONEIII,CYCLONEIVE,HARDCOPYIII,ARRIAII,ARRIAIIGZ,TARPON,HARDCOPYIV,STINGRAY";
+         Required_Device_Family = "STRATIX,STRATIXGX,STRATIXII,STRATIXIIGX,STRATIXIIGXLITE,STRATIXIII,STRATIXIV,STRATIXV,CYCLONE,CYCLONEII,CYCLONEIII,CYCLONEIVE,CYCLONEV,HARDCOPYIII,ARRIAII,ARRIAIIGZ,ARRIAV,TARPON,HARDCOPYIV,STINGRAY";
          Default_Module_Name = "cpu";
          Top_Level_Ports_Are_Enumerated = "1";
          View 
@@ -2600,7 +2600,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "no_legacy_module";
-      class_version = "7.08110";
+      class_version = "7.08111";
       gtf_class_name = "altera_up_avalon_clocks";
       gtf_class_version = "11.0";
       SYSTEM_BUILDER_INFO 
@@ -2704,7 +2704,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "altera_avalon_sysid";
-      class_version = "7.08110";
+      class_version = "7.08111";
       SYSTEM_BUILDER_INFO 
       {
          Date_Modified = "";
@@ -2716,7 +2716,7 @@ SYSTEM Cpu_Infrared
          Has_Clock = "1";
          View 
          {
-            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>4F6E18B7</b> (timestamp: Sat Mar 24, 2012 @7:55 PM)";
+            Settings_Summary = "System ID (at last Generate):<br> <b>00000000</b>    (unique ID tag) <br> <b>4F6E246B</b> (timestamp: Sat Mar 24, 2012 @8:45 PM)";
             MESSAGES 
             {
             }
@@ -2725,7 +2725,7 @@ SYSTEM Cpu_Infrared
       WIZARD_SCRIPT_ARGUMENTS 
       {
          id = "0u";
-         timestamp = "1332615351u";
+         timestamp = "1332618347u";
          regenerate_values = "0";
          MAKE 
          {
@@ -2734,7 +2734,7 @@ SYSTEM Cpu_Infrared
                verifysysid 
                {
                   All_Depends_On = "0";
-                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000000 --id=0 --timestamp=1332615351";
+                  Command = "nios2-download $(JTAG_CABLE)                                --sidp=0x00000000 --id=0 --timestamp=1332618347";
                   Is_Phony = "1";
                   Target_File = "dummy_verifysysid_file";
                }
@@ -2877,7 +2877,7 @@ SYSTEM Cpu_Infrared
          }
       }
       class = "no_legacy_module";
-      class_version = "7.08110";
+      class_version = "7.08111";
       gtf_class_name = "Infrared_compomnent";
       gtf_class_version = "1.0";
       SYSTEM_BUILDER_INFO 
