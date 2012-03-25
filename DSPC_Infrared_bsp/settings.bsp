@@ -2,8 +2,8 @@
 <sch:Settings xmlns:sch="http://www.altera.com/embeddedsw/bsp/schema">
         <BspType>hal</BspType>
         <BspVersion>default</BspVersion>
-        <BspGeneratedTimeStamp>Mar 25, 2012 8:25:44 PM</BspGeneratedTimeStamp>
-        <BspGeneratedUnixTimeStamp>1332699944743</BspGeneratedUnixTimeStamp>
+        <BspGeneratedTimeStamp>25-03-2012 20:30:55</BspGeneratedTimeStamp>
+        <BspGeneratedUnixTimeStamp>1332700255863</BspGeneratedUnixTimeStamp>
         <BspGeneratedLocation>D:\Workspace\QuartusII\DSPC_Infrared\DSPC_Infrared_bsp</BspGeneratedLocation>
         <BspSettingsFile>settings.bsp</BspSettingsFile>
         <SopcDesignFile>D:\Workspace\QuartusII\DSPC_Infrared\QuartusPrj\Cpu_Infrared.sopcinfo</SopcDesignFile>

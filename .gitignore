@@ -14,12 +14,17 @@
 *.qdf
 *.wlf
 *.vstf
+*.elf
+*.map
+*.objdump
+*.a
 
 transcript
 
 db/
 incremental_db/
 work/
+obj/
 .sopc_builder/
 
 *.avrsuo
