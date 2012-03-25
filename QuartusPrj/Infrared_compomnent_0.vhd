@@ -1,4 +1,4 @@
--- Infrared_compomnent_0.vhd
+-- Infrared_Compomnent_0.vhd
 
 -- This file was auto-generated as part of a generation operation.
 -- If you edit it your changes will probably be lost.
@@ -7,7 +7,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity Infrared_compomnent_0 is
+entity Infrared_Compomnent_0 is
 	port (
 		csi_clockreset_clk     : in  std_logic                     := '0';             --       clockreset.clk
 		csi_clockreset_reset_n : in  std_logic                     := '0';             -- clockreset_reset.reset_n
@@ -20,9 +20,9 @@ entity Infrared_compomnent_0 is
 		bus_irq                : out std_logic;                                        -- interrupt_sender.irq
 		IR_RX                  : in  std_logic                     := '0'              --      conduit_end.beginbursttransfer_n
 	);
-end entity Infrared_compomnent_0;
+end entity Infrared_Compomnent_0;
 
-architecture rtl of Infrared_compomnent_0 is
+architecture rtl of Infrared_Compomnent_0 is
 	component IR_Receiver_Componment is
 		port (
 			csi_clockreset_clk     : in  std_logic                     := 'X';             -- clk
@@ -54,4 +54,4 @@ begin
 			IR_RX                  => IR_RX                   --      conduit_end.beginbursttransfer_n
 		);
 
-end architecture rtl; -- of Infrared_compomnent_0
+end architecture rtl; -- of Infrared_Compomnent_0

@@ -51,15 +51,6 @@ set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name SOPC_BUILDER_SIGNATURE_ID 002710CE2A480000013644551A13 -qip Cpu_Infrared.qip
-set_global_assignment -name IP_TOOL_NAME sopc -entity Cpu_Infrared -qip Cpu_Infrared.qip
-set_global_assignment -name IP_TOOL_VERSION 11.1 -entity Cpu_Infrared -qip Cpu_Infrared.qip
-set_global_assignment -name IP_TOOL_ENV sopc -entity Cpu_Infrared -qip Cpu_Infrared.qip
-set_global_assignment -name IP_TOOL_NAME altera_fir_compiler_ii -entity filter -qip filter.qip -library lib_filter
-set_global_assignment -name IP_TOOL_VERSION 11.1 -entity filter -qip filter.qip -library lib_filter
-set_global_assignment -name IP_TOOL_ENV mwpim -entity filter -qip filter.qip -library lib_filter
-set_global_assignment -name IP_TOOL_NAME altera_fir_compiler_ii -entity filter_0002 -qip filter.qip -library lib_filter
-set_global_assignment -name IP_TOOL_VERSION 11.1 -entity filter_0002 -qip filter.qip -library lib_filter
-set_global_assignment -name IP_TOOL_ENV mwpim -entity filter_0002 -qip filter.qip -library lib_filter
 set_location_assignment PIN_N25 -to SW[0]
 set_location_assignment PIN_N26 -to SW[1]
 set_location_assignment PIN_P25 -to SW[2]

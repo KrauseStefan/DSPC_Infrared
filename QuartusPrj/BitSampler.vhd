@@ -6,17 +6,20 @@ entity BitSampler is
 	port(
 		clk     : in  std_logic;
 		reset_n : in  std_logic;
-		data    : out std_logic;
-		valid   : out std_logic;
-		IR_RX   : in  std_logic;
-		rcvDone : in  std_logic);
+		rcvDone : in  std_logic;
+		data    : out std_logic := '0';
+		valid   : out std_logic := '0';
+
+		-- Forwarded signals
+		IR_RX   : in  std_logic
+	);
 end entity BitSampler;
 
 architecture BitSampler_RTL of BitSampler is
-	type samplerStates is (idle, firstSample, sampling);
+	type samplerStates is (idle, validHold, firstSample, sampling);
 	signal samplerState : samplerStates := idle;
 	signal timer1       : integer       := 0;
-	signal intData      : std_logic;
+	signal intData      : std_logic     := '1';
 	signal preIntData   : std_logic     := '1';
 
 	-- clock freq: 2MHz
@@ -24,7 +27,7 @@ architecture BitSampler_RTL of BitSampler is
 	-- 1778 tics = 889us/(1/2MHz)
 	constant SAMPLE_TIC_PERIOD      : integer := 1778;
 	constant HALF_SAMPLE_TIC_PERIOD : integer := SAMPLE_TIC_PERIOD / 2;
-
+	constant VALID_HOLD             : integer := 5; --plenty of time
 begin
 	deModulator_inst : entity work.DeModulator
 		port map(clk     => clk,
@@ -46,23 +49,30 @@ begin
 
 			case samplerState is
 				when idle =>
-					valid <= '0';
 					--Rising edge
 					if intData = '1' and preIntData = '0' then
 						timer1       <= 0;
 						samplerState <= firstSample;
 					end if;
+				when validHold =>
+					if (timer1 >= VALID_HOLD) then
+						valid        <= '0';
+						samplerState <= sampling;
+					end if;
 				when firstSample =>
 					if timer1 >= HALF_SAMPLE_TIC_PERIOD then
 						data         <= intData;
 						timer1       <= 0;
-						samplerState <= sampling;
+						valid        <= '1';
+						samplerState <= validHold;
 					end if;
 				when sampling =>
-					if timer1 >= SAMPLE_TIC_PERIOD then
+					if rcvDone = '1' then
+						samplerState <= idle;
+					elsif timer1 >= SAMPLE_TIC_PERIOD then
 						data         <= intData;
 						timer1       <= 0;
-						samplerState <= sampling;
+						samplerState <= validHold;
 					end if;
 				when others => null;
 			end case;

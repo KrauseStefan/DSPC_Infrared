@@ -5,11 +5,11 @@
    element Cpu_Infrared
    {
    }
-   element Infrared_compomnent_0
+   element Infrared_Compomnent_0
    {
       datum _sortIndex
       {
-         value = "11";
+         value = "10";
          type = "int";
       }
    }
@@ -49,19 +49,11 @@
    {
       datum _sortIndex
       {
-         value = "9";
+         value = "8";
          type = "int";
       }
    }
-   element lcd_1.control_slave
-   {
-      datum baseAddress
-      {
-         value = "1052752";
-         type = "long";
-      }
-   }
-   element sysid_0.control_slave
+   element sysid.control_slave
    {
       datum baseAddress
       {
@@ -81,7 +73,7 @@
    {
       datum _sortIndex
       {
-         value = "8";
+         value = "7";
          type = "int";
       }
       datum megawizard_uipreferences
@@ -119,28 +111,7 @@
          type = "String";
       }
    }
-   element lcd_1
-   {
-      datum _sortIndex
-      {
-         value = "6";
-         type = "int";
-      }
-      datum megawizard_uipreferences
-      {
-         value = "{}";
-         type = "String";
-      }
-   }
-   element pio_0
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
-   element pio_1
+   element pio_input
    {
       datum _sortIndex
       {
@@ -148,11 +119,19 @@
          type = "int";
       }
    }
-   element Infrared_compomnent_0.s1
+   element pio_output
+   {
+      datum _sortIndex
+      {
+         value = "3";
+         type = "int";
+      }
+   }
+   element pio_input.s1
    {
       datum baseAddress
       {
-         value = "512";
+         value = "1052720";
          type = "long";
       }
    }
@@ -164,15 +143,15 @@
          type = "long";
       }
    }
-   element pio_1.s1
+   element Infrared_Compomnent_0.s1
    {
       datum baseAddress
       {
-         value = "1052720";
+         value = "512";
          type = "long";
       }
    }
-   element pio_0.s1
+   element pio_output.s1
    {
       datum baseAddress
       {
@@ -188,11 +167,11 @@
          type = "int";
       }
    }
-   element sysid_0
+   element sysid
    {
       datum _sortIndex
       {
-         value = "10";
+         value = "9";
          type = "int";
       }
    }
@@ -200,7 +179,7 @@
    {
       datum _sortIndex
       {
-         value = "7";
+         value = "6";
          type = "int";
       }
    }
@@ -218,8 +197,8 @@
  <parameter name="maxAdditionalLatency" value="0" />
  <parameter name="projectName" value="DSPC_InfraRead.qpf" />
  <parameter name="sopcBorderPoints" value="true" />
- <parameter name="systemHash" value="-14577470885" />
- <parameter name="timeStamp" value="1332618347178" />
+ <parameter name="systemHash" value="-8236711178" />
+ <parameter name="timeStamp" value="1332698634826" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />
@@ -250,7 +229,7 @@
   <parameter name="writeBufferDepth" value="64" />
   <parameter name="writeIRQThreshold" value="8" />
  </module>
- <module kind="altera_avalon_pio" version="11.1" enabled="1" name="pio_0">
+ <module kind="altera_avalon_pio" version="11.1" enabled="1" name="pio_output">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -264,7 +243,7 @@
   <parameter name="simDrivenValue" value="0" />
   <parameter name="width" value="8" />
  </module>
- <module kind="altera_avalon_pio" version="11.1" enabled="1" name="pio_1">
+ <module kind="altera_avalon_pio" version="11.1" enabled="1" name="pio_input">
   <parameter name="bitClearingEdgeCapReg" value="false" />
   <parameter name="bitModifyingOutReg" value="false" />
   <parameter name="captureEdge" value="false" />
@@ -283,11 +262,6 @@
    version="11.1"
    enabled="1"
    name="lcd_0" />
- <module
-   kind="altera_avalon_lcd_16207"
-   version="11.1"
-   enabled="1"
-   name="lcd_1" />
  <module kind="altera_avalon_timer" version="11.1" enabled="1" name="timer_0">
   <parameter name="alwaysRun" value="false" />
   <parameter name="counterSize" value="32" />
@@ -393,7 +367,7 @@
   <parameter name="dcache_numTCDM" value="_0" />
   <parameter name="dcache_lineSize" value="_32" />
   <parameter name="dcache_bursts" value="false" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sysid_0.control_slave' start='0x0' end='0x8' /><slave name='Infrared_compomnent_0.s1' start='0x200' end='0x400' /><slave name='sram_0.avalon_sram_slave' start='0x80000' end='0x100000' /><slave name='cpu_0.jtag_debug_module' start='0x100800' end='0x101000' /><slave name='timer_0.s1' start='0x101000' end='0x101020' /><slave name='pio_0.s1' start='0x101020' end='0x101030' /><slave name='pio_1.s1' start='0x101030' end='0x101040' /><slave name='lcd_0.control_slave' start='0x101040' end='0x101050' /><slave name='lcd_1.control_slave' start='0x101050' end='0x101060' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x101060' end='0x101068' /><slave name='clocks_0.avalon_clocks_slave' start='0x101068' end='0x10106A' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='sysid.control_slave' start='0x0' end='0x8' /><slave name='Infrared_Compomnent_0.s1' start='0x200' end='0x400' /><slave name='sram_0.avalon_sram_slave' start='0x80000' end='0x100000' /><slave name='cpu_0.jtag_debug_module' start='0x100800' end='0x101000' /><slave name='timer_0.s1' start='0x101000' end='0x101020' /><slave name='pio_output.s1' start='0x101020' end='0x101030' /><slave name='pio_input.s1' start='0x101030' end='0x101040' /><slave name='lcd_0.control_slave' start='0x101040' end='0x101050' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x101060' end='0x101068' /><slave name='clocks_0.avalon_clocks_slave' start='0x101068' end='0x10106A' /></address-map>]]></parameter>
   <parameter name="dataAddrWidth" value="21" />
   <parameter name="customInstSlavesSystemInfo" value="&lt;info/&gt;" />
   <parameter name="cpuReset" value="false" />
@@ -416,26 +390,23 @@
   <parameter name="AUTO_CLK_IN_PRIMARY_CLOCK_RATE" value="50000000" />
   <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone II" />
  </module>
- <module kind="altera_avalon_sysid" version="11.1" enabled="1" name="sysid_0">
+ <module kind="altera_avalon_sysid" version="11.1" enabled="1" name="sysid">
   <parameter name="id" value="0" />
  </module>
  <module
-   kind="Infrared_compomnent"
+   kind="Infrared_Compomnent"
    version="1.0"
    enabled="1"
-   name="Infrared_compomnent_0">
-  <parameter name="AUTO_CLOCKRESET_CLOCK_RATE" value="50000000" />
- </module>
+   name="Infrared_Compomnent_0" />
  <connection
    kind="clock"
    version="11.1"
    start="clk_0.clk"
    end="sram_0.clock_reset" />
  <connection kind="clock" version="11.1" start="clk_0.clk" end="jtag_uart_0.clk" />
- <connection kind="clock" version="11.1" start="clk_0.clk" end="pio_0.clk" />
- <connection kind="clock" version="11.1" start="clk_0.clk" end="pio_1.clk" />
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="pio_output.clk" />
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="pio_input.clk" />
  <connection kind="clock" version="11.1" start="clk_0.clk" end="lcd_0.clk" />
- <connection kind="clock" version="11.1" start="clk_0.clk" end="lcd_1.clk" />
  <connection kind="clock" version="11.1" start="clk_0.clk" end="timer_0.clk" />
  <connection kind="clock" version="11.1" start="clk_0.clk" end="cpu_0.clk" />
  <connection
@@ -478,11 +449,19 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00101060" />
  </connection>
- <connection kind="avalon" version="11.1" start="cpu_0.data_master" end="pio_0.s1">
+ <connection
+   kind="avalon"
+   version="11.1"
+   start="cpu_0.data_master"
+   end="pio_output.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00101020" />
  </connection>
- <connection kind="avalon" version="11.1" start="cpu_0.data_master" end="pio_1.s1">
+ <connection
+   kind="avalon"
+   version="11.1"
+   start="cpu_0.data_master"
+   end="pio_input.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00101030" />
  </connection>
@@ -493,14 +472,6 @@
    end="lcd_0.control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00101040" />
- </connection>
- <connection
-   kind="avalon"
-   version="11.1"
-   start="cpu_0.data_master"
-   end="lcd_1.control_slave">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x00101050" />
  </connection>
  <connection
    kind="avalon"
@@ -533,12 +504,12 @@
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00101068" />
  </connection>
- <connection kind="clock" version="11.1" start="clk_0.clk" end="sysid_0.clk" />
+ <connection kind="clock" version="11.1" start="clk_0.clk" end="sysid.clk" />
  <connection
    kind="avalon"
    version="11.1"
    start="cpu_0.data_master"
-   end="sysid_0.control_slave">
+   end="sysid.control_slave">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
  </connection>
@@ -546,12 +517,12 @@
    kind="clock"
    version="11.1"
    start="clk_0.clk"
-   end="Infrared_compomnent_0.clockreset" />
+   end="Infrared_Compomnent_0.clockreset" />
  <connection
    kind="avalon"
    version="11.1"
    start="cpu_0.data_master"
-   end="Infrared_compomnent_0.s1">
+   end="Infrared_Compomnent_0.s1">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0200" />
  </connection>
@@ -559,7 +530,7 @@
    kind="interrupt"
    version="11.1"
    start="cpu_0.d_irq"
-   end="Infrared_compomnent_0.interrupt_sender">
+   end="Infrared_Compomnent_0.interrupt_sender">
   <parameter name="irqNumber" value="2" />
  </connection>
 </system>

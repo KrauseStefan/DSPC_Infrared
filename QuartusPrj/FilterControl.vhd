@@ -1,6 +1,7 @@
 library ieee;
 
 use IEEE.std_logic_1164.all;
+use IEEE.numeric_std.all;
 
 entity FilterControl is
 	port(
@@ -22,7 +23,7 @@ architecture rtl of FilterControl is
 	signal ast_sink_valid : std_logic;
 	signal ast_sink_error : std_logic_vector(1 downto 0);
 
-	signal ast_source_data  : std_logic_vector(31 downto 0);
+	signal ast_source_data  : std_logic_vector(7 downto 0);
 	signal ast_source_ready : std_logic;
 	signal ast_source_valid : std_logic;
 	signal ast_source_error : std_logic_vector(1 downto 0);
@@ -50,7 +51,6 @@ begin
 	sinkProc : process(clk, reset_n) is
 		constant SCALE_TO : integer := 5;
 		variable scaler   : integer := 0;
-
 	begin
 		if reset_n = '0' then
 			coeff_in_clk    <= '0';
@@ -63,9 +63,9 @@ begin
 				when transfer =>
 					if (ast_sink_ready = '1') then
 						if IR_RX = '0' then
-							ast_sink_data <= x"00";
+							ast_sink_data <= std_logic_vector(to_signed(0, 8));
 						else
-							ast_sink_data <= x"ff";
+							ast_sink_data <= std_logic_vector(to_signed(127, 8));
 						end if;
 						ast_sink_valid <= '1';
 						sinkState      <= holdOne;
@@ -79,14 +79,15 @@ begin
 		elsif falling_edge(clk) then
 		end if;
 
---		scaler := scaler + 1;
---		if (scaler >= SCALE_TO) then
---			scaler := 0;
---		end if;
+	--		scaler := scaler + 1;
+	--		if (scaler >= SCALE_TO) then
+	--			scaler := 0;
+	--		end if;
 
 	end process sinkProc;
 
 	sourceProc : process(clk, reset_n) is
+		variable result : integer;
 	begin
 		if reset_n = '0' then
 			sourceState      <= transfer;
@@ -96,7 +97,12 @@ begin
 				when transfer =>
 					ast_source_ready <= '1';
 					if (ast_source_valid = '1') then
-						data        <= ast_source_data(31);
+						result := TO_INTEGER(signed(ast_source_data));
+						if result >= 3 then
+							data <= '1';
+						else
+							data <= '0';
+						end if;
 						sourceState <= holdOne;
 					end if;
 				when holdOne =>
