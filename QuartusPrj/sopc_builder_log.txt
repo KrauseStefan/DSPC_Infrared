@@ -1,18 +1,18 @@
-25-03-2012 20:02:20 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_sh.exe -t C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0001_sopcqmap/not_a_project_setup.tcl
-25-03-2012 20:02:21 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Infrared_compomnent.vhd --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0001_sopcqmap/
-25-03-2012 20:03:18 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_sh.exe -t C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0002_sopcqmap/not_a_project_setup.tcl
-25-03-2012 20:03:20 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Infrared_compomnent.vhd --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0002_sopcqmap/
-25-03-2012 20:04:00 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/sram_0.v --source=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/sram_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0003_sopcqmap/
-25-03-2012 20:04:04 com.altera.utilities.Launcher launch
-INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/clocks_0.v --source=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/clocks_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_5820551246485027809.dir/0004_sopcqmap/
-25-03-2012 20:04:07 com.altera.utilities.Launcher launch
+25-03-2012 22:07:45 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_sh.exe -t C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0001_sopcqmap/not_a_project_setup.tcl
+25-03-2012 22:07:46 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Infrared_compomnent.vhd --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0001_sopcqmap/
+25-03-2012 22:09:26 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_sh.exe -t C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0002_sopcqmap/not_a_project_setup.tcl
+25-03-2012 22:09:28 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Infrared_compomnent.vhd --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0002_sopcqmap/
+25-03-2012 22:10:51 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/sram_0.v --source=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/sram_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0003_sopcqmap/
+25-03-2012 22:10:54 com.altera.utilities.Launcher launch
+INFO: Launching:d:/programmer/alterasuite/11.1/quartus//bin/quartus_map.exe not_a_project --generate_hdl_interface=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/clocks_0.v --source=D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/clocks_0.v --set=HDL_INTERFACE_OUTPUT_PATH=C:/Users/Stefan/AppData/Local/Temp/alt5424_8888320640794264256.dir/0004_sopcqmap/
+25-03-2012 22:10:57 com.altera.utilities.Launcher launch
 INFO: Launching:d:\programmer\alterasuite\11.1\quartus//bin/quartus_sh.exe -t sopc_add_qip_file.tcl
-25-03-2012 20:04:09 com.altera.utilities.Launcher launch
+25-03-2012 22:11:00 com.altera.utilities.Launcher launch
 INFO: Launching:D:/programmer/alterasuite/11.1/quartus/bin/cygwin/bin/sh.exe -c . D:/programmer/alterasuite/11.1/quartus/sopc_builder/bin/nios_sh ; D:/programmer/alterasuite/11.1/quartus/sopc_builder/bin/sopc_builder --classic --no_splash --refresh D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf
-25-03-2012 20:04:25 com.altera.utilities.Launcher launch
+25-03-2012 22:11:18 com.altera.utilities.Launcher launch
 INFO: Launching:D:/programmer/alterasuite/11.1/quartus/bin/cygwin/bin/sh.exe -c . D:/programmer/alterasuite/11.1/quartus/sopc_builder/bin/nios_sh ; D:/programmer/alterasuite/11.1/quartus/sopc_builder/bin/sopc_builder --classic --generate D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf

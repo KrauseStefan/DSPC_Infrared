@@ -127,14 +127,6 @@
          type = "int";
       }
    }
-   element pio_input.s1
-   {
-      datum baseAddress
-      {
-         value = "1052720";
-         type = "long";
-      }
-   }
    element timer_0.s1
    {
       datum baseAddress
@@ -156,6 +148,14 @@
       datum baseAddress
       {
          value = "1052704";
+         type = "long";
+      }
+   }
+   element pio_input.s1
+   {
+      datum baseAddress
+      {
+         value = "1052720";
          type = "long";
       }
    }
@@ -198,7 +198,7 @@
  <parameter name="projectName" value="DSPC_InfraRead.qpf" />
  <parameter name="sopcBorderPoints" value="true" />
  <parameter name="systemHash" value="-8236711178" />
- <parameter name="timeStamp" value="1332698634826" />
+ <parameter name="timeStamp" value="1332706231797" />
  <parameter name="useTestBenchNamingPattern" value="false" />
  <module kind="clock_source" version="11.1" enabled="1" name="clk_0">
   <parameter name="clockFrequency" value="50000000" />

@@ -3765,6 +3765,7 @@ entity Cpu_Infrared is
 
               -- the_Infrared_Compomnent_0
                  signal IR_RX_to_the_Infrared_Compomnent_0 : IN STD_LOGIC;
+                 signal debugPins_from_the_Infrared_Compomnent_0 : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 
               -- the_lcd_0
                  signal LCD_E_from_the_lcd_0 : OUT STD_LOGIC;
@@ -3839,7 +3840,8 @@ component Infrared_Compomnent_0 is
 
                  -- outputs:
                     signal avs_s1_readdata : OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
-                    signal bus_irq : OUT STD_LOGIC
+                    signal bus_irq : OUT STD_LOGIC;
+                    signal debugPins : OUT STD_LOGIC_VECTOR (7 DOWNTO 0)
                  );
 end component Infrared_Compomnent_0;
 
@@ -4527,6 +4529,7 @@ end component Cpu_Infrared_reset_clk_0_domain_synch_module;
                 signal internal_SRAM_OE_N_from_the_sram_0 :  STD_LOGIC;
                 signal internal_SRAM_UB_N_from_the_sram_0 :  STD_LOGIC;
                 signal internal_SRAM_WE_N_from_the_sram_0 :  STD_LOGIC;
+                signal internal_debugPins_from_the_Infrared_Compomnent_0 :  STD_LOGIC_VECTOR (7 DOWNTO 0);
                 signal internal_out_port_from_the_pio_output :  STD_LOGIC_VECTOR (7 DOWNTO 0);
                 signal jtag_uart_0_avalon_jtag_slave_address :  STD_LOGIC;
                 signal jtag_uart_0_avalon_jtag_slave_chipselect :  STD_LOGIC;
@@ -4632,6 +4635,7 @@ begin
     port map(
       avs_s1_readdata => Infrared_Compomnent_0_s1_readdata,
       bus_irq => Infrared_Compomnent_0_s1_irq,
+      debugPins => internal_debugPins_from_the_Infrared_Compomnent_0,
       IR_RX => IR_RX_to_the_Infrared_Compomnent_0,
       avs_s1_address => Infrared_Compomnent_0_s1_address,
       avs_s1_chipselect => Infrared_Compomnent_0_s1_chipselect,
@@ -5195,6 +5199,8 @@ begin
   --vhdl renameroo for output signals
   SRAM_WE_N_from_the_sram_0 <= internal_SRAM_WE_N_from_the_sram_0;
   --vhdl renameroo for output signals
+  debugPins_from_the_Infrared_Compomnent_0 <= internal_debugPins_from_the_Infrared_Compomnent_0;
+  --vhdl renameroo for output signals
   out_port_from_the_pio_output <= internal_out_port_from_the_pio_output;
 
 end europa;
@@ -5233,6 +5239,7 @@ component Cpu_Infrared is
 
                  -- the_Infrared_Compomnent_0
                     signal IR_RX_to_the_Infrared_Compomnent_0 : IN STD_LOGIC;
+                    signal debugPins_from_the_Infrared_Compomnent_0 : OUT STD_LOGIC_VECTOR (7 DOWNTO 0);
 
                  -- the_lcd_0
                     signal LCD_E_from_the_lcd_0 : OUT STD_LOGIC;
@@ -5272,6 +5279,7 @@ end component Cpu_Infrared;
                 signal clk :  STD_LOGIC;
                 signal clk_0 :  STD_LOGIC;
                 signal clocks_0_sys_clk_out :  STD_LOGIC;
+                signal debugPins_from_the_Infrared_Compomnent_0 :  STD_LOGIC_VECTOR (7 DOWNTO 0);
                 signal in_port_to_the_pio_input :  STD_LOGIC_VECTOR (7 DOWNTO 0);
                 signal jtag_uart_0_avalon_jtag_slave_dataavailable_from_sa :  STD_LOGIC;
                 signal jtag_uart_0_avalon_jtag_slave_readyfordata_from_sa :  STD_LOGIC;
@@ -5302,6 +5310,7 @@ begin
       SRAM_UB_N_from_the_sram_0 => SRAM_UB_N_from_the_sram_0,
       SRAM_WE_N_from_the_sram_0 => SRAM_WE_N_from_the_sram_0,
       clocks_0_sys_clk_out => clocks_0_sys_clk_out,
+      debugPins_from_the_Infrared_Compomnent_0 => debugPins_from_the_Infrared_Compomnent_0,
       out_port_from_the_pio_output => out_port_from_the_pio_output,
       IR_RX_to_the_Infrared_Compomnent_0 => IR_RX_to_the_Infrared_Compomnent_0,
       clk_0 => clk_0,

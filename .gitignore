@@ -25,8 +25,8 @@ db/
 incremental_db/
 work/
 obj/
-.sopc_builder/
 
+.sopc_builder/
 *.avrsuo
 
 # Packages #

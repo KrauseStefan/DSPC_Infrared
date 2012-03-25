@@ -20,7 +20,7 @@ architecture bench of FilterControl_tb is
 	signal IR_RX   : std_logic;
 	signal data    : std_logic;
 
-	constant clock_period   : time    := 500 ns; -- 2 MHz;
+	constant clock_period   : time    := 2500 ns; -- 2 MHz;
 	constant IrClock_period : time    := 27 us;
 	constant Ir_signals     : integer := 32;
 
@@ -28,17 +28,19 @@ architecture bench of FilterControl_tb is
 	signal stop_the_Irclock : boolean := false;
 
 begin
-	uut : FilterControl port map(clk     => clk,
-			                     reset_n => reset_n,
-			                     IR_RX   => IR_RX,
-			                     data    => data);
+	uut : FilterControl
+		port map(
+			clk     => clk,
+			reset_n => reset_n,
+			IR_RX   => IR_RX,
+			data    => data
+		);
 
 	stimulus : process
 	begin
 		reset_n <= '0';
 		wait for 1 us;
 		reset_n <= '1';
-		
 
 		-- Put test bench stimulus code here
 
@@ -51,10 +53,10 @@ begin
 	begin
 		wait for 1 us;
 		while not stop_the_Irclock loop
-			IR_RX <= '0', '1' after IrClock_period / 3 * 2;
+			IR_RX <= '1', '0' after IrClock_period / 3 * 2;
 			if (Ir_recived = Ir_signals) then
 				-- stop_the_Irclock <= true;
-				IR_RX      <= '0';
+				IR_RX      <= '1';
 				Ir_recived := 0;
 				wait for 889 us;
 			else

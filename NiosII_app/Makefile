@@ -142,7 +142,7 @@ ACDS_VERSION := 11.1
 ELF := DSPC_Infrared.elf
 
 # Paths to C, C++, and assembly source files.
-C_SRCS := hello_world.c
+C_SRCS := Program.c
 CXX_SRCS :=
 ASM_SRCS :=
 

@@ -22,9 +22,9 @@ use work.auk_dspip_math_pkg_hpfir.all;
 entity filter_ast is
   generic (
   INWIDTH             : integer := 8;
-  FULL_WIDTH          : integer := 24;
+  FULL_WIDTH          : integer := 22;
   BANKINWIDTH         : integer := 0;
-  REM_LSB_BIT_g       : integer := 16;
+  REM_LSB_BIT_g       : integer := 14;
   REM_LSB_TYPE_g      : string := "Truncation";
   REM_MSB_BIT_g       : integer := 0;
   REM_MSB_TYPE_g      : string := "Truncation";
@@ -104,7 +104,7 @@ component filter_rtl is
     xIn_0              : in std_logic_vector(8 - 1 downto 0);
     xOut_v             : out std_logic_vector(0 downto 0);
     xOut_c             : out std_logic_vector(7 downto 0);
-    xOut_0             : out std_logic_vector(24 - 1 downto 0);
+    xOut_0             : out std_logic_vector(22 - 1 downto 0);
     clk                : in std_logic;
     areset             : in std_logic;
     bus_clk            : in std_logic;
@@ -181,7 +181,7 @@ hpfircore: filter_rtl
      xIn_0     => data_in((0 + 8) * 0 + 8 - 1 downto (0 + 8) * 0),
      xOut_v    => core_out_valid,
      xOut_c    => core_out_channel,
-     xOut_0   => core_out(24 * 0 + 24 - 1 downto 24 * 0),
+     xOut_0   => core_out(22 * 0 + 22 - 1 downto 22 * 0),
      clk       => clk,
      areset    => reset_fir,
      bus_clk   => bus_clk,

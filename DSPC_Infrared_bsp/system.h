@@ -4,7 +4,7 @@
  * Machine generated for CPU 'cpu_0' in SOPC Builder design 'Cpu_Infrared'
  * SOPC Builder design path: D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.sopcinfo
  *
- * Generated: Sun Mar 25 20:24:28 CEST 2012
+ * Generated: Sun Mar 25 22:16:39 CEST 2012
  */
 
 /*
@@ -320,7 +320,7 @@
 #define SYSID_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define SYSID_NAME "/dev/sysid"
 #define SYSID_SPAN 8
-#define SYSID_TIMESTAMP 1332698635u
+#define SYSID_TIMESTAMP 1332706232u
 #define SYSID_TYPE "altera_avalon_sysid"
 
 

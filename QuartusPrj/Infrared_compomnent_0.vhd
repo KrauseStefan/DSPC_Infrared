@@ -18,7 +18,8 @@ entity Infrared_Compomnent_0 is
 		avs_s1_writedata       : in  std_logic_vector(15 downto 0) := (others => '0'); --                 .writedata
 		avs_s1_readdata        : out std_logic_vector(15 downto 0);                    --                 .readdata
 		bus_irq                : out std_logic;                                        -- interrupt_sender.irq
-		IR_RX                  : in  std_logic                     := '0'              --      conduit_end.beginbursttransfer_n
+		IR_RX                  : in  std_logic                     := '0';             --      conduit_end.export
+		debugPins              : out std_logic_vector(7 downto 0)                      --    conduit_end_1.export
 	);
 end entity Infrared_Compomnent_0;
 
@@ -34,7 +35,8 @@ architecture rtl of Infrared_Compomnent_0 is
 			avs_s1_writedata       : in  std_logic_vector(15 downto 0) := (others => 'X'); -- writedata
 			avs_s1_readdata        : out std_logic_vector(15 downto 0);                    -- readdata
 			bus_irq                : out std_logic;                                        -- irq
-			IR_RX                  : in  std_logic                     := 'X'              -- beginbursttransfer_n
+			IR_RX                  : in  std_logic                     := 'X';             -- export
+			debugPins              : out std_logic_vector(7 downto 0)                      -- export
 		);
 	end component IR_Receiver_Componment;
 
@@ -51,7 +53,8 @@ begin
 			avs_s1_writedata       => avs_s1_writedata,       --                 .writedata
 			avs_s1_readdata        => avs_s1_readdata,        --                 .readdata
 			bus_irq                => bus_irq,                -- interrupt_sender.irq
-			IR_RX                  => IR_RX                   --      conduit_end.beginbursttransfer_n
+			IR_RX                  => IR_RX,                  --      conduit_end.export
+			debugPins              => debugPins               --    conduit_end_1.export
 		);
 
 end architecture rtl; -- of Infrared_Compomnent_0

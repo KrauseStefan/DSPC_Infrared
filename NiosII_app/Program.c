@@ -15,10 +15,25 @@
  */
 
 #include <stdio.h>
+#include <system.h>
+#include <io.h>
+#include <stdlib.h>
 
-int main()
-{
-  printf("Hello from Nios II!\n");
+int main() {
+	int value = 0;
+	int oldValue = 0;
+	printf("Boot done\n");
+	value = IORD_16DIRECT(INFRARED_COMPOMNENT_0_BASE,0);
+	printf("Initial Value: %u\n", value);
+	while (1) {
+		value = IORD_16DIRECT(INFRARED_COMPOMNENT_0_BASE,0);
 
-  return 0;
+		if(value != oldValue){
+			printf("Recived %u\n", value);
+			oldValue = value;
+		}
+
+	}
+
+	return 0;
 }

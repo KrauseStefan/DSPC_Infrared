@@ -4,14 +4,15 @@ use IEEE.Numeric_Std.all;
 
 entity InfraredReciver is
 	port(
-		clk      : in  std_logic;
-		reset    : in  std_logic;
-		cmd      : out std_logic_vector(11 downto 0) := "000000000000";
-		errorBit : out std_logic;
-		testBit  : out std_logic;
+		clk       : in  std_logic;
+		reset     : in  std_logic;
+		cmd       : out std_logic_vector(11 downto 0) := "000000000000";
+		errorBit  : out std_logic;
+		testBit   : out std_logic;
 
 		--Forwared signals
-		IR_RX    : in  std_logic
+		IR_RX     : in  std_logic;
+		debugPins : out std_logic_vector(7 downto 0)
 	);
 end entity InfraredReciver;
 
@@ -23,7 +24,7 @@ architecture InfraredReciver_Arc of InfraredReciver is
 	signal sampling_cmd   : std_logic_vector(11 downto 0);
 
 	signal data, enable, error : std_logic;
-	signal rcvDone : std_logic := '0';
+	signal rcvDone             : std_logic := '0';
 begin
 	sample : process(clk)
 		variable bit_count : integer;
@@ -84,13 +85,14 @@ begin
 	-- HUSK POT MAPPING TIL KASPER OG KRAUSE
 
 	--Validator : entity work.Validator(TestValidator) port map ( dataOut => data,
-	Validator : entity work.Validator(ValidatorArc) port map(dataOut => data,
-			                                                 clk     => clk,
-			                                                 reset   => reset,
-			                                                 readbit => enable,
-			                                                 error   => error,
-			                                                 IR_RX   => IR_RX,
-			                                                 rcvDone => rcvDone
+	Validator : entity work.Validator(ValidatorArc) port map(dataOut   => data,
+			                                                 clk       => clk,
+			                                                 reset     => reset,
+			                                                 readbit   => enable,
+			                                                 error     => error,
+			                                                 IR_RX     => IR_RX,
+			                                                 rcvDone   => rcvDone,
+			                                                 debugPins => debugPins
 		);
 
 end architecture InfraredReciver_Arc;

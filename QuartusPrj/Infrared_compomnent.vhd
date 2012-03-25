@@ -16,7 +16,9 @@ entity IR_Receiver_Componment is
 
 		-- Interrupt output
 		bus_irq                : out std_logic;
-		IR_RX                  : in  std_logic
+		IR_RX                  : in  std_logic;
+
+		debugPins              : out std_logic_vector(7 downto 0)
 	);
 end entity IR_Receiver_Componment;
 
@@ -32,6 +34,7 @@ begin
 				if avs_s1_write = '1' then
 					avs_s1_readdata(12 downto 1) <= data;
 					avs_s1_readdata(0) <= error;
+
 				end if;
 			end if;
 		end if;
@@ -42,7 +45,8 @@ begin
 			reset    => csi_clockreset_reset_n,
 			cmd      => data,
 			errorBit => error,
-			IR_RX    => IR_RX
+			IR_RX    => IR_RX,
+			debugPins => debugPins
 		);
 
 end architecture IR_Componment_Arc;

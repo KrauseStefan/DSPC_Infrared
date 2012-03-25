@@ -5,12 +5,13 @@ use IEEE.numeric_std.all;
 
 entity FilterControl is
 	port(
-		clk     : in  std_logic;
-		reset_n : in  std_logic;
+		clk       : in  std_logic;
+		reset_n   : in  std_logic;
 
-		IR_RX   : in  std_logic;
+		IR_RX     : in  std_logic;
 
-		data    : out std_logic
+		data      : out std_logic;
+		debugPins : out std_logic_vector(7 downto 0) := X"00"
 	);
 end entity FilterControl;
 
@@ -62,9 +63,11 @@ begin
 			case sinkState is
 				when transfer =>
 					if (ast_sink_ready = '1') then
-						if IR_RX = '0' then
+						if IR_RX = '1' then
+							debugPins(0) <= '1';
 							ast_sink_data <= std_logic_vector(to_signed(0, 8));
 						else
+							debugPins(1) <= '1';
 							ast_sink_data <= std_logic_vector(to_signed(127, 8));
 						end if;
 						ast_sink_valid <= '1';
@@ -97,8 +100,9 @@ begin
 				when transfer =>
 					ast_source_ready <= '1';
 					if (ast_source_valid = '1') then
-						result := TO_INTEGER(signed(ast_source_data));
-						if result >= 3 then
+						result       := TO_INTEGER(signed(ast_source_data));
+						if result >= 2 then
+							debugPins(2) <= '1';
 							data <= '1';
 						else
 							data <= '0';

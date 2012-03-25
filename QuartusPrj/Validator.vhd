@@ -4,17 +4,18 @@ use ieee.numeric_std.all;
 
 entity Validator is
 	port(
-		clk     : in  std_logic;
-		reset   : in  std_logic;
-		dataOut : out std_logic := '0';
-		readbit : out std_logic := '0';
-		error   : out std_logic := '0';
-		first   : out std_logic;
-		second  : out std_logic;
+		clk       : in  std_logic;
+		reset     : in  std_logic;
+		dataOut   : out std_logic := '0';
+		readbit   : out std_logic := '0';
+		error     : out std_logic := '0';
+		first     : out std_logic;
+		second    : out std_logic;
 
 		-- Forwared signals
-		IR_RX   : in  std_logic;
-		rcvDone : in  std_logic
+		IR_RX     : in  std_logic;
+		rcvDone   : in  std_logic;
+		debugPins : out std_logic_vector(7 downto 0)
 	);
 end entity Validator;
 
@@ -110,13 +111,15 @@ begin
 
 	--	BitSampler : entity work.BitSampler(TestBitSampler) port map(
 	BitSampler : entity work.BitSampler(BitSampler_RTL) port map(
-			clk     => clk,
-			reset_n => reset,
-			data    => dataIn,
-			valid   => enable,
-			IR_RX   => IR_RX,
-			rcvDone => rcvDone);
-			
+			clk       => clk,
+			reset_n   => reset,
+			data      => dataIn,
+			valid     => enable,
+			IR_RX     => IR_RX,
+			rcvDone   => rcvDone,
+			debugPins => debugPins
+		);
+
 end architecture ValidatorArc;
 
 -------------------------------------------------------------------------------

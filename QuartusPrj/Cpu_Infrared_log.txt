@@ -3,80 +3,79 @@ Copyright (c) 1999-2009 Altera Corporation.  All rights reserved.
 
 
 No .sopc_builder configuration file(!)
-# 2012.03.25 20:04:36 (*) mk_custom_sdk starting
+# 2012.03.25 22:11:30 (*) mk_custom_sdk starting
+# 2012.03.25 22:11:30 (*) Reading project D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf.
 
-# 2012.03.25 20:04:36 (*) Reading project D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf.
+# 2012.03.25 22:11:31 (*) Finding all CPUs
+# 2012.03.25 22:11:31 (*) Finding all available components
+# 2012.03.25 22:11:31 (*) Reading D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/.sopc_builder/install.ptf
 
-# 2012.03.25 20:04:36 (*) Finding all CPUs
-# 2012.03.25 20:04:36 (*) Finding all available components
-# 2012.03.25 20:04:36 (*) Reading D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/.sopc_builder/install.ptf
+# 2012.03.25 22:11:31 (*) Found 63 components
 
-# 2012.03.25 20:04:36 (*) Found 63 components
+# 2012.03.25 22:11:32 (*) Finding all peripherals
 
-# 2012.03.25 20:04:38 (*) Finding all peripherals
+# 2012.03.25 22:11:32 (*) Finding software components
 
-# 2012.03.25 20:04:38 (*) Finding software components
+# 2012.03.25 22:11:33 (*) (Legacy SDK Generation Skipped)
+# 2012.03.25 22:11:33 (*) (All TCL Script Generation Skipped)
+# 2012.03.25 22:11:33 (*) (No Libraries Built)
+# 2012.03.25 22:11:33 (*) (Contents Generation Skipped)
+# 2012.03.25 22:11:33 (*) mk_custom_sdk finishing
 
-# 2012.03.25 20:04:39 (*) (Legacy SDK Generation Skipped)
-# 2012.03.25 20:04:39 (*) (All TCL Script Generation Skipped)
-# 2012.03.25 20:04:39 (*) (No Libraries Built)
-# 2012.03.25 20:04:39 (*) (Contents Generation Skipped)
-# 2012.03.25 20:04:39 (*) mk_custom_sdk finishing
-# 2012.03.25 20:04:39 (*) Starting generation for system: Cpu_Infrared.
+# 2012.03.25 22:11:33 (*) Starting generation for system: Cpu_Infrared.
 
+.
+..
 .
 .
 .
 .
-.
-.
-.
 
-# 2012.03.25 20:04:42 (*) Running Generator Program for jtag_uart_0
+# 2012.03.25 22:11:35 (*) Running Generator Program for jtag_uart_0
 
-# 2012.03.25 20:04:44 (*) Running Generator Program for pio_output
+# 2012.03.25 22:11:37 (*) Running Generator Program for pio_output
 
-# 2012.03.25 20:04:45 (*) Running Generator Program for pio_input
+# 2012.03.25 22:11:38 (*) Running Generator Program for pio_input
 
-# 2012.03.25 20:04:47 (*) Running Generator Program for lcd_0
+# 2012.03.25 22:11:39 (*) Running Generator Program for lcd_0
 
-# 2012.03.25 20:04:48 (*) Running Generator Program for timer_0
+# 2012.03.25 22:11:39 (*) Running Generator Program for timer_0
 
-# 2012.03.25 20:04:50 (*) Running Generator Program for cpu_0
+# 2012.03.25 22:11:41 (*) Running Generator Program for cpu_0
 
-# 2012.03.25 20:04:52 (*) Starting Nios II generation
-# 2012.03.25 20:04:52 (*)   Checking for plaintext license.
-# 2012.03.25 20:04:54 (*)   Plaintext license not found.
-# 2012.03.25 20:04:54 (*)   No license required to generate encrypted Nios II/e.
-# 2012.03.25 20:04:54 (*)   Getting CPU configuration settings
-# 2012.03.25 20:04:54 (*)   Elaborating CPU configuration settings
-# 2012.03.25 20:04:54 (*)   Creating all objects for CPU
-# 2012.03.25 20:04:58 (*)   Generating HDL from CPU objects
-# 2012.03.25 20:04:58 (*)   Creating plain-text HDL
+# 2012.03.25 22:11:43 (*) Starting Nios II generation
+# 2012.03.25 22:11:43 (*)   Checking for plaintext license.
+# 2012.03.25 22:11:45 (*)   Plaintext license not found.
+# 2012.03.25 22:11:45 (*)   No license required to generate encrypted Nios II/e.
+# 2012.03.25 22:11:45 (*)   Getting CPU configuration settings
+# 2012.03.25 22:11:45 (*)   Elaborating CPU configuration settings
+# 2012.03.25 22:11:45 (*)   Creating all objects for CPU
+# 2012.03.25 22:11:49 (*)   Generating HDL from CPU objects
+# 2012.03.25 22:11:49 (*)   Creating plain-text HDL
 
-# 2012.03.25 20:05:09 (*) Done Nios II generation
+# 2012.03.25 22:11:59 (*) Done Nios II generation
 
-# 2012.03.25 20:05:09 (*) Running Generator Program for sysid
+# 2012.03.25 22:11:59 (*) Running Generator Program for sysid
 
 
-# 2012.03.25 20:05:10 (*) Making arbitration and system (top) modules.
+# 2012.03.25 22:12:00 (*) Making arbitration and system (top) modules.
 
-# 2012.03.25 20:05:25 (*) Generating Quartus symbol for top level: Cpu_Infrared
+# 2012.03.25 22:12:14 (*) Generating Quartus symbol for top level: Cpu_Infrared
 
-# 2012.03.25 20:05:25 (*) Generating Symbol D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.bsf
+# 2012.03.25 22:12:14 (*) Generating Symbol D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.bsf
 
-# 2012.03.25 20:05:25 (*) Creating command-line system-generation script: D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared_generation_script
+# 2012.03.25 22:12:14 (*) Creating command-line system-generation script: D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared_generation_script
 
-# 2012.03.25 20:05:25 (*) Running setup for HDL simulator: modelsim
+# 2012.03.25 22:12:14 (*) Running setup for HDL simulator: modelsim
 
 
-# 2012.03.25 20:05:26 (*) Completed generation for system: Cpu_Infrared.
-# 2012.03.25 20:05:26 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
+# 2012.03.25 22:12:14 (*) Completed generation for system: Cpu_Infrared.
+# 2012.03.25 22:12:14 (*) THE FOLLOWING SYSTEM ITEMS HAVE BEEN GENERATED:
   SOPC Builder database : D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.ptf 
   System HDL Model : D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared.vhd 
   System Generation Script : D:/Workspace/QuartusII/DSPC_Infrared/QuartusPrj/Cpu_Infrared_generation_script 
 
-# 2012.03.25 20:05:26 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
+# 2012.03.25 22:12:14 (*) SUCCESS: SYSTEM GENERATION COMPLETED.
 
 
 Press 'Exit' to exit.
