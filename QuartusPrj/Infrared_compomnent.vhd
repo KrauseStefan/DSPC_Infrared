@@ -12,7 +12,7 @@ entity IR_Receiver_Componment is
 		avs_s1_chipselect      : in  std_logic; -- Avalon cs
 		avs_s1_address         : in  std_logic_vector(7 downto 0); -- Avalon address
 		avs_s1_writedata       : in  std_logic_vector(15 downto 0); -- Avalon wr data
-		avs_s1_readdata        : out std_logic_vector(15 downto 0); -- Avalon rd data
+		avs_s1_readdata        : out std_logic_vector(15 downto 0) := (others => '0'); -- Avalon rd data
 
 		-- Interrupt output
 		bus_irq                : out std_logic;
@@ -30,22 +30,20 @@ begin
 	mm_bus : process(csi_clockreset_clk)
 	begin
 		if rising_edge(csi_clockreset_clk) then
-			if avs_s1_chipselect = '1' then
-				if avs_s1_write = '1' then
-					avs_s1_readdata(12 downto 1) <= data;
-					avs_s1_readdata(0) <= error;
-
-				end if;
+			if avs_s1_chipselect = '1' and avs_s1_read = '1' then
+				avs_s1_readdata(12 downto 1) <= data;
+				avs_s1_readdata(15 downto 13) <= "000";
+				avs_s1_readdata(0) <= error;
 			end if;
 		end if;
 	end process;
 
 	dataGetting : entity work.InfraredReciver port map(
-			clk      => csi_clockreset_clk,
-			reset    => csi_clockreset_reset_n,
-			cmd      => data,
-			errorBit => error,
-			IR_RX    => IR_RX,
+			clk       => csi_clockreset_clk,
+			reset     => csi_clockreset_reset_n,
+			cmd       => data,
+			errorBit  => error,
+			IR_RX     => IR_RX,
 			debugPins => debugPins
 		);
 

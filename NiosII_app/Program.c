@@ -18,6 +18,9 @@
 #include <system.h>
 #include <io.h>
 #include <stdlib.h>
+#include <nios2.h>
+#include <os/alt_syscall.h>
+#include <altera_avalon_pio_regs.h>
 
 int main() {
 	int value = 0;
@@ -31,9 +34,12 @@ int main() {
 		if(value != oldValue){
 			printf("Recived %u\n", value);
 			oldValue = value;
+			IOWR_ALTERA_AVALON_PIO_SET_BITS(PIO_OUTPUT_BASE, value);
+			usleep(100);
 		}
 
 	}
 
 	return 0;
 }
+

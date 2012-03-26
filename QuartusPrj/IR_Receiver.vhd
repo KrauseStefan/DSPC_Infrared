@@ -6,7 +6,7 @@ entity InfraredReciver is
 	port(
 		clk       : in  std_logic;
 		reset     : in  std_logic;
-		cmd       : out std_logic_vector(11 downto 0) := "000000000000";
+		cmd       : out std_logic_vector(11 downto 0) := "010101010101";
 		errorBit  : out std_logic;
 		testBit   : out std_logic;
 
@@ -30,7 +30,7 @@ begin
 		variable bit_count : integer;
 	begin
 		if rising_edge(clk) then
-			if reset = '1' then
+			if reset = '0' then
 				state <= idle;
 			else
 				case (state) is

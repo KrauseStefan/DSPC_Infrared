@@ -89,6 +89,9 @@ begin
 
 		reset <= '1';
 
+
+
+
 --		wait for clock_period * 100;
 --		stop_the_clock <= true;
 		wait;
